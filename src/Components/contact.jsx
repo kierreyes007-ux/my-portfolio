@@ -18,6 +18,29 @@ function Contact() {
         <div className="space-y-4 text-lg">
 
           <p>
+           <i class="fa-solid fa-phone"></i> {" "}
+               Contact:{" "}
+            <a
+              
+              className="text-blue-600 hover:underline"
+            >
+              09771703256
+            </a>
+          </p>
+
+          <p>
+           <i class="fa-brands fa-facebook-messenger"></i> {" "}
+               Facebook:{" "}
+            <a
+              href="https://www.facebook.com/reyeskier12"
+              target="_blank"
+              className="text-blue-600 hover:underline"
+            >
+              Kier Reyes
+            </a>
+          </p>
+
+          <p>
             📧 Email:{" "}
             <a
               href="mailto:kierreyes007@gmail.com"
@@ -30,12 +53,12 @@ function Contact() {
           <p>
             💻 GitHub:{" "}
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/kierreyes007-ux"
               target="_blank"
               rel="noreferrer"
               className="text-blue-600 hover:underline"
             >
-              github.com/yourusername
+              https://github.com/kierreyes007-ux
             </a>
           </p>
 

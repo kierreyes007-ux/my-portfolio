@@ -15,13 +15,19 @@ function Hero() {
         </p>
 
         <div className="mt-6 flex gap-4 justify-center md:justify-start">
-          <button className="bg-black text-white px-6 py-3 rounded-md">
+
+          <a href="#projects">
+          <button className="bg-black text-white px-6 py-3 rounded-md"
+          >
             View Projects
           </button>
+          </a>
 
+            <a href="#contact">
           <button className="border border-black px-6 py-3 rounded-md">
             Contact Me
           </button>
+            </a>
         </div>
       </div>
 
