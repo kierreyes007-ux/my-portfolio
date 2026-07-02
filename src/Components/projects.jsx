@@ -2,7 +2,7 @@ import ProjectCard from "./Projectscard";
 import events from "../assets/Photos/Events.png";
 import expense from "../assets/Photos/Expense.png";
 import movie from "../assets/Photos/Movies.png";
-import todolist from "../assets/Photos/TodoList.png";
+import todolist from "../assets/Photos/Todolist.png";
 import weatherapp from "../assets/Photos/WeatherApp.png";
 import calculator from "../assets/Photos/Calculator.png";
 
