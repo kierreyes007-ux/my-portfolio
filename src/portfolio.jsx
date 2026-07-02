@@ -17,7 +17,7 @@ function Portfolio() {
         <Route
           path="/"
           element={
-            <div className="w-full min-h-screen">
+            <div className="w-full min-h-screen overflow-x-hidden">
               <Navbar />
               <Hero />
               <About />
