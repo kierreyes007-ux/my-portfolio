@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 
-import Calculator from "../Projects/calculator";
-import Expense from "../Projects/expense";
-import Weather from "../Projects/weatherapp";
-import Events from "../Projects/events";
-import Movie from "../Projects/movie";
-import Prac from "../Projects/todolist";
+import Calculator from "../ProjectsApp/calculator";
+import Expense from "../ProjectsApp/expense";
+import Weather from "../ProjectsApp/weatherapp";
+import Events from "../ProjectsApp/events";
+import Movie from "../ProjectsApp/movie";
+import Prac from "../ProjectsApp/todolist";
 
 function ProjectDetail() {
   const { slug } = useParams();
