@@ -33,7 +33,7 @@ function Projects() {
       title: "Movie App",
       slug: "movie-app",
       description:
-        "Search for movies and browse details using an external API.",
+        "A simple movie listing app where users can list and rate movies",
       tech: "React • Tailwind CSS"
     
     },
@@ -64,7 +64,7 @@ function Projects() {
       slug: "calculator",
       description:
         "Calculator capable of performing basic arithmetic operations.",
-      tech: "HTML • CSS • JavaScript"
+      tech: "HTML • CSS • JavaScript • React"
       
     },
   ];

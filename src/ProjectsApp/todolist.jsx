@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Prac() {
+function Todolist() {
     const maxLength = 45;
     const [editingIndex, setEditingIndex] = useState(null);
     const [editText, setEditText] = useState("");
@@ -163,4 +163,4 @@ function Prac() {
 );
 }
 
-export default Prac;
+export default Todolist;
