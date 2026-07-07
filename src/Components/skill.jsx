@@ -5,10 +5,12 @@ function Skills() {
     "JavaScript",
     "React",
     "Tailwind CSS",
-    "Git",
-    "GitHub",
     "Responsive Design",
     "API Integration",
+    "State Management",
+    "React Hooks",
+    "Git",
+    "GitHub",
     "XAMPP",
     "MySQL",
     "SQL",
@@ -33,8 +35,11 @@ function Skills() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          {skills.map((skill) => (
+          {skills.map((skill, index) => (
             <span
+            data-aos="fade-down" 
+            data-aos-duration="600" 
+            data-aos-delay={index * 80}
               key={skill}
               className="bg-white px-5 py-2 rounded-full shadow-sm text-gray-800 hover:bg-black hover:text-white transition"
             >

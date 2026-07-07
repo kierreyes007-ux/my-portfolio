@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";  
 function ProjectCard({ image, title, description, tech, slug }) {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+    <div data-aos="fade-up"
+    data-aos-duration="800"
+    data-aos-delay="200"
+    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+    >
       <img
         src={image}
         alt={title}
@@ -23,7 +27,7 @@ function ProjectCard({ image, title, description, tech, slug }) {
 
        <Link
           to={`/projects/${slug}`}
-          className="inline-block mt-4 bg-black text-white px-4 py-2 rounded"
+          className="inline-block mt-4 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 hover:scale-105 transition duration-300"
         >
           View Project
         </Link>
