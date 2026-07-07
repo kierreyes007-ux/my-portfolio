@@ -17,7 +17,7 @@ function Hero() {
          Frontend Developer focused on building responsive and user-friendly web applications using React and Tailwind CSS. I enjoy turning ideas into clean and modern interfaces.
         </p>
 
-        <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <div className="mt-6 flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
 
           <a href="#projects">
           <button className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
@@ -31,7 +31,7 @@ function Hero() {
             Contact Me
           </button>
             </a>
-
+            
             <a href="/resume.pdf"
             download="resume.pdf"
             className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition"
