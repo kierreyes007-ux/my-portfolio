@@ -4,7 +4,7 @@ function ProjectCard({ image, title, description, tech, slug }) {
     <div data-aos="fade-up"
     data-aos-duration="800"
     data-aos-delay="200"
-    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+    className="min-w-[320px] md:min-w-[380px] snap-center"
     >
       <img
         src={image}

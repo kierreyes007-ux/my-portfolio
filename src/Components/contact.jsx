@@ -4,12 +4,13 @@ function Contact() {
   id="contact"
   className="w-full min-h-screen px-6 py-20 flex items-center justify-center bg-gray-100"
 >
-  <div className="max-w-3xl w-full text-center">
+  <div className="max-w-3xl w-full text-center"
+  data-aos="fade-right"
+  data-aos-duration="800">
 
     <h2
       className="text-4xl font-bold mb-4"
-      data-aos="fade-left"
-      data-aos-duration="800"
+     
     >
       Contact Me
     </h2>
@@ -18,7 +19,6 @@ function Contact() {
       className="text-gray-600 mb-10"
       data-aos="fade-right"
       data-aos-duration="800"
-      data-aos-delay="150"
     >
       Feel free to reach out if you have any questions or want to work together.
     </p>
@@ -26,8 +26,8 @@ function Contact() {
     <div className="space-y-4 text-lg">
 
       <p
-        data-aos="fade-left"
-        data-aos-duration="700"
+       data-aos="fade-right"
+      data-aos-duration="800"
       >
         <i className="fa-solid fa-phone"></i>{" "}
         Contact:{" "}
@@ -37,9 +37,8 @@ function Contact() {
       </p>
 
       <p
-        data-aos="fade-right"
-        data-aos-duration="700"
-        data-aos-delay="100"
+       data-aos="fade-right"
+      data-aos-duration="800"
       >
         <i className="fa-brands fa-facebook-messenger"></i>{" "}
         Facebook:{" "}
@@ -53,9 +52,8 @@ function Contact() {
       </p>
 
       <p
-        data-aos="fade-left"
-        data-aos-duration="700"
-        data-aos-delay="200"
+       data-aos="fade-right"
+      data-aos-duration="800"
       >
         📧 Email:{" "}
         <a
@@ -67,9 +65,8 @@ function Contact() {
       </p>
 
       <p
-        data-aos="fade-right"
-        data-aos-duration="700"
-        data-aos-delay="300"
+       data-aos="fade-right"
+      data-aos-duration="800"
       >
         💻 GitHub:{" "}
         <a
@@ -86,9 +83,8 @@ function Contact() {
 
     <div
       className="mt-10 flex justify-center gap-6"
-      data-aos="fade-up"
-      data-aos-duration="900"
-      data-aos-delay="400"
+      data-aos="fade-right"
+      data-aos-duration="800"
     >
       <a
         href="mailto:kierreyes007@gmail.com"

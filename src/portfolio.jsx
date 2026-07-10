@@ -32,6 +32,7 @@ function Portfolio() {
   return null;
 }
   return (
+    <div className="w-full overflow-x-hidden">
     <BrowserRouter>
      <AOSRefresh />
 
@@ -57,6 +58,7 @@ function Portfolio() {
 
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 export default Portfolio;
