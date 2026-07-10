@@ -83,6 +83,9 @@ function Projects() {
             <ProjectCard key={project.slug} {...project} />
           ))}
         </div>
+        <p className="text-center text-gray-500 mb-10">
+          ← Swipe or scroll to view more projects →
+        </p>
 
       </div>
     </section>
