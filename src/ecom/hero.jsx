@@ -28,7 +28,7 @@ function Hero() {
              <p className="text-xl font-bold pl-5 py-4">Categories</p>
           
                 
-                <div className="w-full px-4 grid gap-5 grid-cols-4 justify-items-center">
+                <div className="w-full px-4 grid gap-5 grid-cols-2 md:grid-cols-4 justify-items-center">
                     
                     <div className="text-center font-bold ">
                     <img className="w-full max-w-[160px] aspect-square object-contain "src={usama}></img> <p>Nike Shoe</p>
