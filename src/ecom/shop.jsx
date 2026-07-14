@@ -14,7 +14,7 @@ function Shop( {products, addToCart} ) {
             <p>₱: {prod.price}</p>
             </div>
 
-            <button className="border-2 border-black rounded-full p-2 px-4 hover:bg-black hover:text-white hover:scale-105 transition duration-300 ease-in-out"
+            <button className="border-2 border-black rounded-full hover:bg-black hover:text-white hover:scale-105 transition duration-300 ease-in-out"
             onClick={() => addToCart(prod)}>Add to cart</button>
             
             </div>

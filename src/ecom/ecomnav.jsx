@@ -15,7 +15,7 @@ function Ecomnav() {
             <h1 
             className="text-4xl text-center text-bold"
             >e-Commerce</h1>
-            <Link to='contact'>
+            <Link to='/projects/e-commence/cart'>
             <button 
             className="hover:text-blue-500 transition-colors duration-300"><i className="fa-solid fa-cart-arrow-down text-2xl"
             ></i></button></Link>
@@ -25,6 +25,8 @@ function Ecomnav() {
                     <div className="flex flex-col gap-2 items-center justify-between w-30 ">
                     <div>NOTE: You can add to cart and see the product on Cart, also I don't have original products yet. The images are from Google, and the product selection is limited.</div>
                     
+                    <button className="mb-4 px-4 py-2 bg-black text-white rounded mt-20"
+                    onClick={() => setOpen(false)}>close</button>
                     
                     </div>
                 </div>)}
