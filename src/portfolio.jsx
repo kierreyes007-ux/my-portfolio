@@ -7,6 +7,7 @@ import Hero from "./Components/hero";
 import About from "./Components/about";
 import Footer from "./Components/footer";
 import { useEffect } from "react";
+import Ecommence from "./ProjectsApp/ecommence";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -32,7 +33,7 @@ function Portfolio() {
   return null;
 }
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-clip">
     <BrowserRouter>
      <AOSRefresh />
 
@@ -53,8 +54,8 @@ function Portfolio() {
           }
         />
 
-
-        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        
+        <Route path="/projects/:slug/*" element={<ProjectDetail />} />
 
       </Routes>
     </BrowserRouter>

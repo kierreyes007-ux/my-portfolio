@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-
+import Ecommence from "../ProjectsApp/ecommence";
 import Calculator from "../ProjectsApp/calculator";
 import Expense from "../ProjectsApp/expense";
 import Weather from "../ProjectsApp/weatherapp";
@@ -13,6 +13,7 @@ function ProjectDetail() {
 
   // STEP 2: connect URL → component
   const projectMap = {
+    "e-commence": Ecommence,
     "calculator": Calculator,
     "expense-tracker": Expense,
     "weather-app": Weather,
@@ -42,7 +43,7 @@ return (
     <div className="min-h-screen bg-gray-100 p-6">
 
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/#projects")}
         className="mb-4 px-4 py-2 bg-black text-white rounded"
       >
         ← Back

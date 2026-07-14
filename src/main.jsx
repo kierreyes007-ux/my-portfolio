@@ -9,6 +9,8 @@ import Weather from "./ProjectsApp/weatherapp";
 import Events from "./ProjectsApp/events";
 import Movie from "./ProjectsApp/movie";
 import Portfolio from "./portfolio";
+import Ecommence from "./ProjectsApp/ecommence";
+import { BrowserRouter } from 'react-router-dom';
 
 
 
@@ -20,5 +22,6 @@ import Portfolio from "./portfolio";
 createRoot(document.getElementById('root')).render(
   
  <Portfolio />
+
  
 )
