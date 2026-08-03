@@ -23,7 +23,7 @@ function About() {
         About Me
       </h2>
 
-       <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed">
+       <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed px-2">
       <span className="font-bold"> CPET Graduate | Web Developer | Data Entry | SQL & Excel </span> <br/>
 
       Computer Engineering graduate with a strong foundation in programming, web development, and database management. Passionate about technology and eager to apply skills in an IT role. Detail-oriented and motivated IT enthusiast with experience in coding, Microsoft Excel, SQL, and web development. Quick learner with a strong commitment to problem-solving, teamwork, and continuous growth.

@@ -14,34 +14,34 @@ function Hero() {
         </h1>
 
         <p className="mt-4 max-w-xl px-5 text-lg md:text-2xl text-gray-600">
-         Frontend Developer focused on building responsive and user-friendly web applications using React and Tailwind CSS. I enjoy turning ideas into clean and modern interfaces.
+          Frontend Developer skilled in building responsive web applications with React and Tailwind CSS. I enjoy creating clean interfaces and integrating APIs, backend services, and databases to deliver functional user experiences.
         </p>
 
-        <div className="mt-6 flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start">
+        <div className="mt-6 flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start px-5">
 
-  <a 
-    href="#projects"
-    className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
-  >
-    View Projects
-  </a>
+        <a 
+          href="#projects"
+          className="bg-black text-white px-12 md:px-6 py-3 rounded-md hover:bg-gray-800 transition"
+        >
+          View Projects
+        </a>
 
-  <a
-    href="/resume.pdf"
-    download="resume.pdf"
-    className="border border-blue-600 text-blue-600 px-6 py-3 rounded-md hover:bg-blue-600 hover:text-white transition"
-  >
-    Download Resume
-  </a>
+        <a
+          href="/resume.pdf"
+          download="resume.pdf"
+          className="border border-blue-600 text-blue-600 px-6 py-3 rounded-md hover:bg-blue-600 hover:text-white transition"
+        >
+          Download Resume
+        </a>
 
-  <a
-    href="#contact"
-    className="border border-gray-400 px-6 py-3 rounded-md hover:bg-white transition"
-  >
-    Contact Me
-  </a>
+        <a
+          href="#contact"
+          className="border border-gray-400 px-12 md:px-6 py-3 rounded-md hover:bg-gray-200 transition"
+        >
+          Contact Me
+        </a>
 
-</div>
+      </div>
       </div>
 
       <div>
