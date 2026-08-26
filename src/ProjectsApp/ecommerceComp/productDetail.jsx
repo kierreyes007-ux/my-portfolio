@@ -1,10 +1,10 @@
 
 import { useEcommerce } from "./ecommerceContext";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 
 function ProductDetail() {
-    const { product } = useEcommerce();
+    const { product, addToCart } = useEcommerce();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -127,7 +127,7 @@ function ProductDetail() {
                      
                         <div className="flex gap-3 pt-3">
 
-                            <button
+                            <button onClick={() => addToCart()}
                                 className="
                                     flex-1
                                     flex items-center justify-center gap-2
@@ -148,7 +148,7 @@ function ProductDetail() {
                                 </span>
                             </button>
 
-                            <button
+                            <button onClick={() => navigate("/projects/e-commerce/login")}
                                 className="
                                     flex-1
                                     bg-orange-500
