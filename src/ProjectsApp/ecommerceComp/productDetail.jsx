@@ -127,7 +127,7 @@ function ProductDetail() {
                      
                         <div className="flex gap-3 pt-3">
 
-                            <button onClick={() => addToCart()}
+                            <button onClick={() => addToCart(product)}
                                 className="
                                     flex-1
                                     flex items-center justify-center gap-2
