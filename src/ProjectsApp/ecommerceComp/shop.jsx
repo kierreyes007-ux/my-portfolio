@@ -1,9 +1,10 @@
 import { useEcommerce } from "./ecommerceContext";
 import { Link, useParams } from "react-router-dom";
 function Shop(){
-    const {product, showConfirm, cancelRequest, confirmRequest, requestAddToCart} = useEcommerce();
+    const {product, showConfirm, cancelRequest, confirmRequest, requestAddToCart, toast} = useEcommerce();
 
     const { category } = useParams();
+    
 
     const filteredProducts = category
         ? product.filter(prod => prod.category === category)
@@ -29,6 +30,13 @@ function Shop(){
             </div>
         ))}
        </div>
+       {toast && (
+        <div 
+            className="fixed bottom-5 left-5 z-50 animate-slide-up rounded-lg transition-all-300
+              bg-black text-white px-5 py-3 text-white shadow-lg flex items-center gap-2">
+                <span>{toast}</span>
+        </div>
+      )}
 
        {showConfirm && (
         <div onClick={()=>cancelRequest()}

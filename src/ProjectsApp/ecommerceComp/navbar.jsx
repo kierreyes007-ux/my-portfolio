@@ -4,10 +4,12 @@ function Navbar() {
         <nav className="flex w-full bg-gray-100">
 
             <div className="desktop-nav hidden md:flex justify-between w-full px-10 py-2">
-                <Link to='.'>
+                <Link to='/projects/e-commerce/.'>
                 <h1 className="text-4xl font-bold">E-commerce</h1>
                 </Link>
                 <div className="flex gap-10 text-xl">
+                <Link className="hover:text-blue-500 transition-colors duration-300 flex"
+                to='/projects/e-commerce/.'>Home</Link>
                 <Link className="hover:text-blue-500 transition-colors duration-300 flex"
                 to='/projects/e-commerce/shop'>Shop</Link>
                 <Link 
@@ -36,7 +38,7 @@ function Navbar() {
                 <button className="text-2xl">
                     <i className="fa-solid fa-circle-user"></i>
                 </button></Link>
-                <Link to='/projects/e-commerce/home'><h1 className="text-3xl font-bold">E-commerce</h1></Link>
+                <Link to='/projects/e-commerce/.'><h1 className="text-3xl font-bold">E-commerce</h1></Link>
                 <Link to='/projects/e-commerce/cart'>
                 <button className="text-2xl">
                     <i className="fa-solid fa-cart-arrow-down"></i>
@@ -45,7 +47,7 @@ function Navbar() {
 
                 <div className="small-screen-bottom-nav
                w-full position fixed bottom-0 right-0 bg-gray-100 grid grid-cols-5 place-items-center text-2xl pt-2 md:hidden z-50">
-            <Link to='.' className="hover:text-blue-500 transition-colors duration-300 flex flex-col justify-center items-center">
+            <Link to='/projects/e-commerce/.' className="hover:text-blue-500 transition-colors duration-300 flex flex-col justify-center items-center">
             <i className="fa-solid fa-house"></i>
             <p className="text-base">Home</p>
             </Link>

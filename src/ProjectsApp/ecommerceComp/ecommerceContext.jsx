@@ -6,7 +6,7 @@ const EcommerceContext = createContext();
 export function EcommerceProvider({children}){
     const [product, setProduct] = useState([]);
     const [cart, setCart] = useState([]);
-
+    const [toast, setToast] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -26,6 +26,10 @@ export function EcommerceProvider({children}){
     
     function addToCart(product){
         const existing = cart.find(item => item.id === product.id);
+        setToast("✓ Added to cart!");
+         setTimeout(() => {
+            setToast("");
+        }, 3000);
 
         if(existing){
             return setCart(prev => prev.map((item) => item.id === existing.id ? {...item, quantity: item.quantity + 1} : item));
@@ -78,7 +82,8 @@ export function EcommerceProvider({children}){
         showConfirm,
         cancelRequest,
         confirmRequest,
-        requestAddToCart
+        requestAddToCart,
+        toast
     };
     return(
        <EcommerceContext.Provider value={value}>

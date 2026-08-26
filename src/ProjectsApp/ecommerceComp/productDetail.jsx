@@ -4,7 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 
 
 function ProductDetail() {
-    const { product, addToCart } = useEcommerce();
+    const { product, addToCart, toast} = useEcommerce();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -169,6 +169,13 @@ function ProductDetail() {
                     </div>
                 </div>
             </div>
+            {toast && (
+        <div 
+            className="fixed md:bottom-5 bottom-10 left-5 z-50 animate-slide-up rounded-lg transition-all-300
+              bg-black text-white px-5 py-3 text-white shadow-lg flex items-center gap-2">
+                <span>{toast}</span>
+        </div>
+      )}
         </div>
     );
 }
