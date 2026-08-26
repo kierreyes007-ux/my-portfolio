@@ -5,19 +5,20 @@ import movie from "../assets/Photos/Movies.png";
 import todolist from "../assets/Photos/Todolist.png";
 import weatherapp from "../assets/Photos/WeatherApp.png";
 import calculator from "../assets/Photos/Calculator.png";
-import ecommence from "../assets/Photos/Ecommence.png";
+import ecommerce from "../assets/Photos/Ecommence.png";
 
 function Projects() {
   const projects = [
     {
-      image: ecommence,
+      image: ecommerce,
       title: "E-commerce App",
-      slug: "e-commence",
+      slug: "e-commerce",
       description:
         "E-commerce website built with React featuring product browsing, categories, shopping cart functionality, and a responsive user interface.",
       tech: "React • Tailwind CSS",
       
     },
+  
     {
       image: weatherapp,
       title: "Weather App",

@@ -10,7 +10,9 @@ import Events from "./ProjectsApp/events";
 import Movie from "./ProjectsApp/movie";
 import Portfolio from "./portfolio";
 import Ecommence from "./ProjectsApp/ecommence";
+import Ecommerce from "./ProjectsApp/ecommerce";
 import { BrowserRouter } from 'react-router-dom';
+import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext";
 
 
 
@@ -21,7 +23,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   
- <Portfolio />
+<Portfolio />
 
  
 )

@@ -6,6 +6,7 @@ import Weather from "../ProjectsApp/weatherapp";
 import Events from "../ProjectsApp/events";
 import Movie from "../ProjectsApp/movie";
 import Prac from "../ProjectsApp/todolist";
+import Ecommerce from "../ProjectsApp/ecommerce";
 
 function ProjectDetail() {
   const { slug } = useParams();
@@ -13,7 +14,7 @@ function ProjectDetail() {
 
   // STEP 2: connect URL → component
   const projectMap = {
-    "e-commence": Ecommence,
+    "e-commerce": Ecommerce,
     "calculator": Calculator,
     "expense-tracker": Expense,
     "weather-app": Weather,
