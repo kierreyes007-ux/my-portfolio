@@ -15,7 +15,7 @@ function Shop(){
         {filteredProducts.map((prod) => (
             <div className="bg-white rounded-2xl shadow-xl grid transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" 
             key={prod.id}>
-                <Link to={`/product/${prod.id}`}>
+                <Link to={`../product/${prod.id}`}>
                 <img className="aspect-square object-contain py-3"
                 src={prod.image}></img>
 

@@ -55,7 +55,7 @@ function Login() {
 
                     <p className="text-center text-gray-500 text-sm">
                         Don't have an account?{" "}
-                        <Link to ='/register'>
+                        <Link to ='/projects/e-commerce/register'>
                         <button
                             type="button"
                             className="font-semibold text-gray-900 hover:underline"

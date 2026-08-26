@@ -70,7 +70,7 @@ function Register() {
 
                     <p className="text-center text-gray-500 text-sm">
                         Already have an account?{" "}
-                        <Link to='/login'>
+                        <Link to='/projects/e-commerce/login'>
                         <button
                             type="button"
                             className="font-semibold text-gray-900 hover:underline"
