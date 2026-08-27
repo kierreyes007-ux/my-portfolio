@@ -7,9 +7,21 @@
   import Register from "./ecommerceComp/register";
   import ProductDetail from "./ecommerceComp/productDetail";
   import Categories from "./ecommerceComp/categories";
+  import Loader from "./ecommerceComp/loader";
+  import ErrorScreen from "./ecommerceComp/errorScreen";
+  import { useEcommerce } from "./ecommerceComp/ecommerceContext";
   import { Routes, Route } from "react-router-dom";
   function Ecommerce(){
+     const { loading, error } = useEcommerce();
+
+     if(loading){
+      return <Loader />
+     }
+     if(error) {
+      return <ErrorScreen error={error}/>
+     }
     return(
+     
       <div>
           <Navbar />
           

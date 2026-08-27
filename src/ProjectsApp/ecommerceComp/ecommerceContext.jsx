@@ -9,8 +9,14 @@ export function EcommerceProvider({children}){
     const [toast, setToast] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [cartLoading, setCartLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [cartError, setCartError] = useState("");
 
     async function fetchProducts(){
+        setLoading(true);
+        setError("");
         try{
             const res = await fetch("https://fakestoreapi.com/products");
             if(!res.ok){
@@ -20,22 +26,32 @@ export function EcommerceProvider({children}){
             setProduct(data);
             console.log(data);
         } catch(err){
-            console.error(err);
+           console.error(err);
+            setError(err.message);
+        } finally{
+            setLoading(false);  
         }
     }
     
-    function addToCart(product){
-        const existing = cart.find(item => item.id === product.id);
+    function addToCart(product, quantity = 1){
+        const existing = cart.find(item =>
+            item.id === product.id &&
+            item.size === product.size &&
+            item.color === product.color
+             
+            );
         setToast("✓ Added to cart!");
          setTimeout(() => {
             setToast("");
         }, 3000);
 
         if(existing){
-            return setCart(prev => prev.map((item) => item.id === existing.id ? {...item, quantity: item.quantity + 1} : item));
+            return setCart(prev => prev.map((item) => item.id === existing.id &&
+                item.size === existing.size &&
+                item.color === existing.color ? {...item, quantity: item.quantity + quantity} : item));
         }
 
-        return setCart(prev => [...prev, {...product, quantity: 1}]);
+        return setCart(prev => [...prev, {...product, quantity}]);
     }
     
     function addQty(product){
@@ -83,7 +99,11 @@ export function EcommerceProvider({children}){
         cancelRequest,
         confirmRequest,
         requestAddToCart,
-        toast
+        toast,  
+        loading,
+        cartLoading,
+        error,
+        cartError
     };
     return(
        <EcommerceContext.Provider value={value}>
