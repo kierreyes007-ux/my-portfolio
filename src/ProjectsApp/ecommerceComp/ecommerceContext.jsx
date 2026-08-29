@@ -18,7 +18,7 @@ export function EcommerceProvider({children}){
         setLoading(true);
         setError("");
         try{
-            const res = await fetch("https://fakestoreapi.com/products");
+            const res = await fetch('https://fakestoreapi.com/products');
             if(!res.ok){
                 throw new Error("Unable to fetch the products")
             }
@@ -66,7 +66,7 @@ export function EcommerceProvider({children}){
     }
 
     function removeToCart(product){
-        setCart(prev => prev.filter(item => item.id !== product.id))
+        setCart(prev => prev.filter(item => item.id !== product.id || item.color !== product.color || item.size !== product.size))
     }
 
     function requestAddToCart(product){

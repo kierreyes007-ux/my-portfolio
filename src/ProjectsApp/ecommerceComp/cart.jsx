@@ -62,7 +62,7 @@ function Cart() {
 
 
                         {/* Quantity */}
-                        <div className="flex gap-2 px-10 text-xl">
+                        <div className="flex gap-2 px-5 text-xl">
 
                             <button
                                 className="font-bold px-2 py-1 border rounded"
@@ -86,7 +86,7 @@ function Cart() {
 
 
                         {/* Price */}
-                        <p className="px-10 text-xl">
+                        <p className="px-5 text-xl">
                             ${(item.price * item.quantity).toFixed(2)}
                         </p>
 

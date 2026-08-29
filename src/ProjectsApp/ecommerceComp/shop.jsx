@@ -29,7 +29,7 @@ function Shop(){
                 
             </div>
         ))}
-       </div>
+       </div> 
        {toast && (
         <div 
             className="fixed bottom-5 left-5 z-50 animate-slide-up rounded-lg transition-all-300
