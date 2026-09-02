@@ -8,12 +8,14 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
+    
 
     const { id } = useParams();
     const navigate = useNavigate();
-
+    
+    
     const selectedProduct = product.find(
-        (item) => item.id === Number(id)
+        (item) => Number(item.id) === Number(id)
     );
 
     if (!selectedProduct) {
@@ -23,11 +25,12 @@ function ProductDetail() {
     const handleAddToCart = () => {
         addToCart(
             {
-                ...selectedProduct,
-                size: selectedSize,
-                color: selectedColor
+                ...selectedProduct
+                
             },
-            quantity
+            quantity,
+            selectedSize,
+            selectedColor
         );
     };
 
@@ -75,7 +78,7 @@ function ProductDetail() {
                                     <i
                                         key={star}
                                         className={
-                                            star <= Math.round(selectedProduct.rating.rate)
+                                            star <= Math.round(selectedProduct.rating_rate)
                                                 ? "fa-solid fa-star"
                                                 : "fa-regular fa-star"
                                         }
@@ -84,7 +87,7 @@ function ProductDetail() {
                             </div>
 
                             <span className="text-sm text-gray-500">
-                                {selectedProduct.rating.rate} ({selectedProduct.rating.count})
+                                {selectedProduct.rating_rate} ({selectedProduct.rating_count})
                             </span>
                         </div>
 

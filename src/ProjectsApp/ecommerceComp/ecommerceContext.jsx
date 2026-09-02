@@ -18,13 +18,14 @@ export function EcommerceProvider({children}){
         setLoading(true);
         setError("");
         try{
-            const res = await fetch('https://fakestoreapi.com/products');
+            const res = await fetch('http://localhost:3000/products');
             if(!res.ok){
                 throw new Error("Unable to fetch the products")
             }
             const data = await res.json();
             setProduct(data);
             console.log(data);
+            
         } catch(err){
            console.error(err);
             setError(err.message);
@@ -33,40 +34,95 @@ export function EcommerceProvider({children}){
         }
     }
     
-    function addToCart(product, quantity = 1){
-        const existing = cart.find(item =>
-            item.id === product.id &&
-            item.size === product.size &&
-            item.color === product.color
-             
-            );
-        setToast("✓ Added to cart!");
-         setTimeout(() => {
-            setToast("");
-        }, 3000);
-
-        if(existing){
-            return setCart(prev => prev.map((item) => item.id === existing.id &&
-                item.size === existing.size &&
-                item.color === existing.color ? {...item, quantity: item.quantity + quantity} : item));
+    async function fetchCart(){
+        try{
+            const res = await fetch("http://localhost:3000/cart");
+            
+            
+            if(!res.ok){
+                throw new Error("Unable to fetch the cart");
+            }
+            const data = await res.json();
+            setCart(data);
+        }catch(err){
+            console.error(err.message)
         }
+    }
 
-        return setCart(prev => [...prev, {...product, quantity}]);
+    async function addToCart(product, quantity = 1, size = "", color = ""){
+        try{
+             const response = await fetch("http://localhost:3000/cart", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({product_id: product.id, quantity: quantity, size: size, color: color})
+        });
+            if(!response.ok){
+                throw new Error("Error cannot post");
+            }
+            
+        await fetchCart();
+            setToast("Added to cart!");
+
+        setTimeout(() => {
+            setToast("");
+        }, 2000);
+
+       }catch(err){
+        console.error(err.message)
+       }
     }
     
-    function addQty(product){
-        setCart(prev => prev.map((item) => item.id === product.id ? {...item, quantity: item.quantity + 1 } : item))
-    }
-
-    function decQty(product){
-        if(product.quantity <= 1){
-            return removeToCart(product);
+    async function addQty(product){
+        try{
+       const response = await fetch(`http://localhost:3000/cart/${product.id}`,{
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({quantity: 1})
+       })
+       if(!response.ok){
+        throw new Error("Error: Unable to add quantity")
+       }
+       await fetchCart();
+        }catch(err){
+            console.error(err.message)
         }
-        setCart(prev => prev.map(item => item.id === product.id ? {...item, quantity: item.quantity -1} : item  ))
     }
 
-    function removeToCart(product){
-        setCart(prev => prev.filter(item => item.id !== product.id || item.color !== product.color || item.size !== product.size))
+    async function decQty(product){
+        try{
+        if(product.quantity > 1){
+         const response = await fetch(`http://localhost:3000/cart/${product.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({quantity: -1})
+         })
+            if(!response.ok){
+                throw new Error("Error Unable to decrease the quantity")
+            }
+            await fetchCart();
+        }else{
+             
+            return removeToCart(product)
+        }
+        }catch(err){
+            console.error(err.message)  
+        }
+       
+    }
+
+    async function removeToCart(product){
+       try{
+        const response = await fetch(`http://localhost:3000/cart/${product.id}`,{
+            method: "DELETE"
+
+        })
+            if(!response.ok){
+                throw new Error("Error unable to delete");  
+            }
+        await fetchCart();
+       }catch(err){
+        console.error(err.message)
+       }
     }
 
     function requestAddToCart(product){
@@ -86,6 +142,7 @@ export function EcommerceProvider({children}){
     }
     useEffect(()=>{
         fetchProducts();
+        fetchCart();
     }, [])
 
     const value = {

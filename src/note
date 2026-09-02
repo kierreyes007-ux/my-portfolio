@@ -1,0 +1,13 @@
+if(existing){
+
+
+    
+            
+             setCart(prev => prev.map((item) => item.id === existing.id &&
+                item.size === existing.size &&
+                item.color === existing.color ? {...item, quantity: item.quantity + quantity} : item));
+        }
+        else{
+            
+         setCart(prev => [...prev, {...product, quantity}]);
+        }
