@@ -11,6 +11,7 @@ import Movie from "./ProjectsApp/movie";
 import Portfolio from "./portfolio";
 import Ecommence from "./ProjectsApp/ecommence";
 import Ecommerce from "./ProjectsApp/ecommerce";
+import Chat from "./ProjectsApp/chatai";
 import { BrowserRouter } from 'react-router-dom';
 import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext";
 
@@ -23,7 +24,8 @@ import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext"
 
 createRoot(document.getElementById('root')).render(
   
-<Portfolio />
+//<Portfolio />
+<Chat />
 
  
 )
