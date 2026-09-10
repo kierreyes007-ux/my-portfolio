@@ -12,7 +12,7 @@ function Loader() {
 
                 {/* Loading text */}
                 <p className="text-sm font-medium text-gray-600 animate-pulse">
-                    Loading...
+                    Loading... This may take a few seconds.
                 </p>
 
             </div>

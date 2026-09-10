@@ -24,9 +24,14 @@ function About() {
       </h2>
 
        <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed px-2">
-      <span className="font-bold"> CPET Graduate | Web Developer | Data Entry | SQL & Excel </span> <br/>
+      <span className="font-bold"> Computer Engineering Graduate | Web Developer | React & Node.js </span> <br/>
 
-      Computer Engineering graduate with a strong foundation in programming, web development, and database management. Passionate about technology and eager to apply skills in an IT role. Detail-oriented and motivated IT enthusiast with experience in coding, Microsoft Excel, SQL, and web development. Quick learner with a strong commitment to problem-solving, teamwork, and continuous growth.
+      Computer Engineering graduate passionate about web development and
+      technology. I build responsive and functional web applications using
+      React and Tailwind CSS, with experience integrating REST APIs, Node.js,
+      Express, and PostgreSQL. I’m a detail-oriented and curious developer who
+      enjoys solving problems, learning new technologies, and continuously
+      improving my skills.
       </p>
       </div>
     </section>

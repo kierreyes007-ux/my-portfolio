@@ -14,7 +14,7 @@ function Hero() {
         </h1>
 
         <p className="mt-4 max-w-xl px-5 text-lg md:text-2xl text-gray-600">
-          Frontend Developer skilled in building responsive web applications with React and Tailwind CSS. I enjoy creating clean interfaces and integrating APIs, backend services, and databases to deliver functional user experiences.
+          Frontend Developer skilled in building responsive web applications with React and Tailwind CSS, with experience integrating REST APIs, backend services, and databases using Node.js, Express, and PostgreSQL. I enjoy creating clean interfaces and building functional, user-focused web experiences.
         </p>
 
         <div className="mt-6 flex flex-col items-center sm:flex-row gap-4 justify-center md:justify-start px-5">
@@ -27,8 +27,8 @@ function Hero() {
         </a>
 
         <a
-          href="/resume.pdf"
-          download="resume.pdf"
+          href="/Reyes_Resume.pdf"
+          download="Reyes_Resume.pdf"
           className="border border-blue-600 text-blue-600 px-6 py-3 rounded-md hover:bg-blue-600 hover:text-white transition"
         >
           Download Resume

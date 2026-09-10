@@ -29,6 +29,16 @@ function Projects() {
       tech: "React.js • Tailwind CSS • Node.js • Express • Gemini API"
       
     },
+
+    {
+      image: expense,
+      title: "Expense Tracker",
+      slug: "expense-tracker",
+      description:
+         "Expense tracking application built with React that allows users to manage and monitor their daily income and expenses.",
+      tech: "React • JavaScript • Tailwind CSS"
+      
+    },
   
     {
       image: weatherapp,
@@ -68,16 +78,6 @@ function Projects() {
         "Website for organizing and managing events.",
       tech: "React • Tailwind CSS"
      
-    },
-
-    {
-      image: expense,
-      title: "Expense Tracker",
-      slug: "expense-tracker",
-      description:
-        "Track your daily income and expenses.",
-      tech: "React • JavaScript • Tailwind CSS"
-      
     },
 
     {

@@ -1,23 +1,33 @@
 function Skills() {
   const skills = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "Tailwind CSS",
-    "Responsive Design",
-    "API Integration",
-    "State Management",
-    "React Hooks",
-    "Git",
-    "GitHub",
-    "XAMPP",
-    "MySQL",
-    "SQL",
-    "Microsoft Excel",
-    "CRUD Operations",
-    "C++ (Basic)"
-  ];
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Tailwind CSS",
+  "Responsive Design",
+  "API Integration",
+  "Database Integration",
+  "State Management",
+  "React Hooks",
+  "Context API",
+  "React Router",
+  "Node.js",
+  "Express.js",
+  "REST APIs",
+  "PostgreSQL",
+  "SQL",
+  "CRUD Operations",
+  "Git",
+  "GitHub",
+  "Deployment (Vercel, Render)",
+  "Supabase",
+  "Gemini API",
+  "MySQL",
+  "XAMPP",
+  "Microsoft Excel",
+  "C++ (Basic)"
+];
 
   return (
     <section
