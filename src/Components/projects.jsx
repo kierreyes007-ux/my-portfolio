@@ -22,7 +22,7 @@ function Projects() {
 
     {
       image: assistance,
-      title: "AI-Assitance App",
+      title: "AI-Assistance App",
       slug: "AI-assistance",
       description:
         "AI chat assistant built with React and Tailwind CSS, featuring real-time conversations, speech-to-text, text-to-speech, and a Gemini-powered Node.js backend.",
