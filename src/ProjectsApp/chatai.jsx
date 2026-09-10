@@ -7,14 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function Chat() {
     return (
         <div className="w-full">
-            <BrowserRouter>
+           
                 <Navbar />
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/ai/chat" element={<AIChat />} />
+                    <Route index element={<Home />} />
+                    <Route path="ai/chat" element={<AIChat />} />
                 </Routes>
-            </BrowserRouter>
+      
         </div>
     );
 }

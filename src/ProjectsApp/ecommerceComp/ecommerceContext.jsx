@@ -18,7 +18,7 @@ export function EcommerceProvider({children}){
         setLoading(true);
         setError("");
         try{
-            const res = await fetch('http://localhost:3000/products');
+            const res = await fetch('https://ecommerce-backend-ob1m.onrender.com/products');
             if(!res.ok){
                 throw new Error("Unable to fetch the products")
             }
@@ -36,7 +36,7 @@ export function EcommerceProvider({children}){
     
     async function fetchCart(){
         try{
-            const res = await fetch("http://localhost:3000/cart");
+            const res = await fetch("https://ecommerce-backend-ob1m.onrender.com/cart");
             
             
             if(!res.ok){
@@ -51,7 +51,7 @@ export function EcommerceProvider({children}){
 
     async function addToCart(product, quantity = 1, size = "", color = ""){
         try{
-             const response = await fetch("http://localhost:3000/cart", {
+             const response = await fetch("https://ecommerce-backend-ob1m.onrender.com/cart", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({product_id: product.id, quantity: quantity, size: size, color: color})
@@ -74,7 +74,7 @@ export function EcommerceProvider({children}){
     
     async function addQty(product){
         try{
-       const response = await fetch(`http://localhost:3000/cart/${product.id}`,{
+       const response = await fetch(`https://ecommerce-backend-ob1m.onrender.com/cart/${product.id}`,{
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({quantity: 1})
@@ -91,7 +91,7 @@ export function EcommerceProvider({children}){
     async function decQty(product){
         try{
         if(product.quantity > 1){
-         const response = await fetch(`http://localhost:3000/cart/${product.id}`, {
+         const response = await fetch(`https://ecommerce-backend-ob1m.onrender.com/cart/${product.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({quantity: -1})
@@ -112,7 +112,7 @@ export function EcommerceProvider({children}){
 
     async function removeToCart(product){
        try{
-        const response = await fetch(`http://localhost:3000/cart/${product.id}`,{
+        const response = await fetch(`https://ecommerce-backend-ob1m.onrender.com/cart/${product.id}`,{
             method: "DELETE"
 
         })

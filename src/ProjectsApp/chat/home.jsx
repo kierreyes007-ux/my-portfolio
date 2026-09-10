@@ -19,7 +19,7 @@ function Hero() {
                 </p>
 
                 <Link
-                    to="/ai/chat"
+                    to="/projects/AI-assistance/ai/chat"
                     className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
                 >
                     Start Chat

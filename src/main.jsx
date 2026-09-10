@@ -2,15 +2,7 @@
 import { createRoot } from 'react-dom/client';
 import App from "./App";
 import './index.css';
-import Todolist from "./ProjectsApp/todolist"; 
-import Calculator from "./ProjectsApp/calculator";
-import Expense from "./ProjectsApp/expense";
-import Weather from "./ProjectsApp/weatherapp";
-import Events from "./ProjectsApp/events";
-import Movie from "./ProjectsApp/movie";
 import Portfolio from "./portfolio";
-import Ecommence from "./ProjectsApp/ecommence";
-import Ecommerce from "./ProjectsApp/ecommerce";
 import Chat from "./ProjectsApp/chatai";
 import { BrowserRouter } from 'react-router-dom';
 import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext";
@@ -24,8 +16,8 @@ import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext"
 
 createRoot(document.getElementById('root')).render(
   
-//<Portfolio />
-<Chat />
+<Portfolio />
+
 
  
 )

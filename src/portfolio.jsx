@@ -8,7 +8,6 @@ import About from "./Components/about";
 import Footer from "./Components/footer";
 import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext";
 import { useEffect } from "react";
-import Ecommence from "./ProjectsApp/ecommence";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

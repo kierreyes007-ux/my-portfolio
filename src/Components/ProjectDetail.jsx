@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router-dom";
-import Ecommence from "../ProjectsApp/ecommence";
 import Calculator from "../ProjectsApp/calculator";
 import Expense from "../ProjectsApp/expense";
 import Weather from "../ProjectsApp/weatherapp";
@@ -7,6 +6,7 @@ import Events from "../ProjectsApp/events";
 import Movie from "../ProjectsApp/movie";
 import Prac from "../ProjectsApp/todolist";
 import Ecommerce from "../ProjectsApp/ecommerce";
+import AIChat from "../ProjectsApp/chatai";
 
 function ProjectDetail() {
   const { slug } = useParams();
@@ -15,6 +15,7 @@ function ProjectDetail() {
   // STEP 2: connect URL → component
   const projectMap = {
     "e-commerce": Ecommerce,
+    "AI-assistance": AIChat,
     "calculator": Calculator,
     "expense-tracker": Expense,
     "weather-app": Weather,

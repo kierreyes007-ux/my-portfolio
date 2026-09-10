@@ -14,8 +14,18 @@ function Projects() {
       title: "E-commerce App",
       slug: "e-commerce",
       description:
-        "E-commerce website built with React featuring product browsing, categories, shopping cart functionality, and a responsive user interface.",
-      tech: "React • Tailwind CSS",
+        "Full-stack e-commerce website built with React featuring product browsing, categories, shopping cart functionality, and a responsive user interface, with a Node.js and Express backend connected to PostgreSQL.",
+      tech: "React.js • Tailwind CSS • Node.js • Express • PostgreSQL",
+      
+    },
+
+    {
+      image: ecommerce,
+      title: "AI-Assitance App",
+      slug: "AI-assistance",
+      description:
+        "AI chat assistant built with React and Tailwind CSS, featuring real-time conversations, speech-to-text, text-to-speech, and a Gemini-powered Node.js backend.",
+      tech: "React.js • Tailwind CSS • Node.js • Express • Gemini API"
       
     },
   
