@@ -4,10 +4,11 @@ const { GoogleGenAI } = require("@google/genai");
 require("dotenv").config();
 const app = express();
 
+
 const gemini = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 });
-
+const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
@@ -40,6 +41,6 @@ app.post("/chat", async (req, res) => {
     }
 })
 
-app.listen(4000, () => {
-    console.log("server is running on port 4000")
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
