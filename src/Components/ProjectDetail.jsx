@@ -42,7 +42,7 @@ function ProjectDetail() {
 
 
 return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 pt-6">
 
       <button
         onClick={() => navigate("/#projects")}
