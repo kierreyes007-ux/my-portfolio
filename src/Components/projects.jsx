@@ -6,6 +6,7 @@ import todolist from "../assets/Photos/Todolist.png";
 import weatherapp from "../assets/Photos/WeatherApp.png";
 import calculator from "../assets/Photos/Calculator.png";
 import ecommerce from "../assets/Photos/Ecommence.png";
+import assistance from "../assets/Photos/Assistance.png";
 
 function Projects() {
   const projects = [
@@ -20,7 +21,7 @@ function Projects() {
     },
 
     {
-      image: ecommerce,
+      image: assistance,
       title: "AI-Assitance App",
       slug: "AI-assistance",
       description:
