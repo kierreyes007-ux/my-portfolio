@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Cart() {
     const { cart, addQty, decQty, removeToCart } = useEcommerce();
-    const [isMinimized, setIsMinimized] = useState(false);
+    const [isMinimized, setIsMinimized] = useState(true);
     const navigate = useNavigate();
 
     const total = cart.reduce(
@@ -43,7 +43,7 @@ function Cart() {
 
                             <div className="flex flex-col w-50 justify-center h-full">
 
-                                <p>{item.title}</p>
+                                <p className="md:line-clamp-4 hover:line-clamp-none">{item.title}</p>
 
                                 {item.size && (
                                     <p className="text-sm text-gray-500">
@@ -65,7 +65,7 @@ function Cart() {
                         <div className="flex gap-2 px-5 text-xl">
 
                             <button
-                                className="font-bold px-2 py-1 border rounded"
+                                className="font-bold px-1.5 md:px-2 py-1 border rounded"
                                 onClick={() => decQty(item)}
                             >
                                 <i className="fa-solid fa-minus text-base"></i>
@@ -76,7 +76,7 @@ function Cart() {
                             </p>
 
                             <button
-                                className="font-bold px-2 py-1 border rounded"
+                                className="font-bold px-1.5 md:px-2 py-1 border rounded"
                                 onClick={() => addQty(item)}
                             >
                                 <i className="fa-solid fa-plus text-base"></i>
@@ -86,14 +86,14 @@ function Cart() {
 
 
                         {/* Price */}
-                        <p className="px-5 text-xl">
+                        <p className="px-5 pt-2 md:pt-0 text-xl">
                             ${(item.price * item.quantity).toFixed(2)}
                         </p>
 
 
                         {/* Delete */}
                         <button
-                            className="absolute right-10 text-black hover:text-red-500 transition"
+                            className="absolute bottom-6 md:bottom-20 right-10 text-black hover:text-red-500 transition"
                             onClick={() => removeToCart(item)}
                         >
                             <i className="fa-solid fa-trash text-3xl"></i>
