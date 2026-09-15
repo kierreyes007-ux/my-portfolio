@@ -13,6 +13,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/vite": "^4.3.0",
     "aos": "^2.3.4",
+    "axios": "^1.20.0",
     "lucide-react": "^1.43.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
