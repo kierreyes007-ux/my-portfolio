@@ -18,7 +18,9 @@ import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext"
 createRoot(document.getElementById('root')).render(
   
 //<Portfolio />
+<BrowserRouter>
 <JobTracker />
+</BrowserRouter>
 
  
 )

@@ -1,24 +1,18 @@
 function JobForm({
-    editingJobId,
     formData,
     handleChange,
-    handleSubmit,
-    resetForm
+    handleSubmit
 }) {
     return (
-        <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-3xl mx-auto">
+        <div className="bg-white">
 
             <div className="mb-6">
                 <h2 className="text-lg font-semibold text-gray-900">
-                    {editingJobId === null
-                        ? "Add Job Application"
-                        : "Edit Job Application"}
+                    Details of the Application
                 </h2>
 
                 <p className="text-sm text-gray-500 mt-1">
-                    {editingJobId === null
-                        ? "Add the details of a job you're applying for."
-                        : "Update the details of this application."}
+                    Add the details of a job you're applying for.
                 </p>
             </div>
 
@@ -26,6 +20,8 @@ function JobForm({
                 onSubmit={handleSubmit}
                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
             >
+
+                {/* Company */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Company
@@ -41,6 +37,7 @@ function JobForm({
                     />
                 </div>
 
+                {/* Position */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Position
@@ -56,6 +53,7 @@ function JobForm({
                     />
                 </div>
 
+                {/* Location */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Location
@@ -71,6 +69,7 @@ function JobForm({
                     />
                 </div>
 
+                {/* Status */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Status
@@ -90,6 +89,7 @@ function JobForm({
                     </select>
                 </div>
 
+                {/* Date Applied */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Date Applied
@@ -104,6 +104,7 @@ function JobForm({
                     />
                 </div>
 
+                {/* Job URL */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Job URL
@@ -119,6 +120,7 @@ function JobForm({
                     />
                 </div>
 
+                {/* Notes */}
                 <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Notes
@@ -134,27 +136,19 @@ function JobForm({
                     />
                 </div>
 
-                <div className="md:col-span-2 flex gap-3 pt-2">
+                {/* Submit */}
+                <div className="md:col-span-2 flex justify-start pt-2">
                     <button
                         type="submit"
                         className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
                     >
-                        {editingJobId === null ? "Add Job" : "Update Job"}
+                        Add Application
                     </button>
-
-                    {editingJobId !== null && (
-                        <button
-                            type="button"
-                            onClick={resetForm}
-                            className="px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors"
-                        >
-                            Cancel
-                        </button>
-                    )}
                 </div>
+
             </form>
         </div>
     );
 }
 
-export default JobForm; 
+export default JobForm;
