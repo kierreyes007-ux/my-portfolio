@@ -87,12 +87,12 @@ function Projects() {
   ];
 
   const carouselRef = useRef(null);
-  const autoScrollRef = useRef(null);
+
 
   const [currentIndex, setCurrentIndex] = useState(projects.length * 2);
   const [slideWidth, setSlideWidth] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
-  const [paused, setPaused] = useState(false);
+ 
   const [dragStart, setDragStart] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
 
@@ -143,18 +143,6 @@ function Projects() {
     setCurrentIndex((prev) => prev - 1);
   };
 
-  useEffect(() => {
-    if (paused || dragStart !== null) {
-      return;
-    }
-
-    autoScrollRef.current = setInterval(() => {
-      setTransitionEnabled(true);
-      setCurrentIndex((prev) => prev + 1);
-    }, 5000);
-
-    return () => clearInterval(autoScrollRef.current);
-  }, [paused, dragStart]);
 
   const handleTransitionEnd = () => {
     const middleStart = projects.length;
