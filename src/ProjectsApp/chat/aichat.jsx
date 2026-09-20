@@ -96,10 +96,13 @@ function AIChat() {
         window.speechSynthesis.cancel();
 
         const speechId = ++speechIdRef.current;
-
         const utterance = new SpeechSynthesisUtterance(text);
 
-        setSpeakingIndex(index);
+        utterance.onstart = () => {
+            if (speechIdRef.current === speechId) {
+                setSpeakingIndex(index);
+            }
+        };
 
         utterance.onend = () => {
             if (speechIdRef.current === speechId) {
@@ -113,6 +116,7 @@ function AIChat() {
             }
         };
 
+        setSpeakingIndex(index);
         window.speechSynthesis.speak(utterance);
     };
 
@@ -138,7 +142,6 @@ function AIChat() {
                     : "bg-white text-gray-900"
             }`}
         >
-            {/* CHAT HEADER */}
             <div
                 className={`w-full shrink-0 border-b px-3 sm:px-6 py-3 ${
                     darkMode
@@ -165,7 +168,6 @@ function AIChat() {
                 </div>
             </div>
 
-            {/* CHAT AREA */}
             <div
                 className={`flex-1 min-h-0 min-w-0 overflow-y-auto overflow-x-hidden px-3 sm:px-6 py-6 sm:py-8 ${
                     darkMode
@@ -204,7 +206,6 @@ function AIChat() {
                                 }`}
                             >
                                 {msg.role === "user" ? (
-                                    /* USER MESSAGE */
                                     <div
                                         className={`max-w-[75%] break-words whitespace-pre-wrap px-4 py-3 rounded-2xl ${
                                             darkMode
@@ -215,7 +216,6 @@ function AIChat() {
                                         {msg.content}
                                     </div>
                                 ) : (
-                                    /* ASSISTANT MESSAGE */
                                     <div className="flex min-w-0 max-w-[85%] items-center gap-2">
                                         <div
                                             className={`min-w-0 break-words whitespace-pre-wrap px-4 py-3 rounded-2xl ${
@@ -227,24 +227,67 @@ function AIChat() {
                                             {msg.content}
                                         </div>
 
+                                        {speakingIndex === index && (
+                                            <div className="flex h-6 shrink-0 items-center gap-[2px] px-1">
+                                                <span
+                                                    className={`h-2 w-[3px] rounded-full animate-[speak_0.6s_ease-in-out_infinite] ${
+                                                        darkMode
+                                                            ? "bg-gray-400"
+                                                            : "bg-gray-500"
+                                                    }`}
+                                                />
+
+                                                <span
+                                                    className={`h-4 w-[3px] rounded-full animate-[speak_0.5s_ease-in-out_infinite_0.1s] ${
+                                                        darkMode
+                                                            ? "bg-gray-300"
+                                                            : "bg-gray-600"
+                                                    }`}
+                                                />
+
+                                                <span
+                                                    className={`h-3 w-[3px] rounded-full animate-[speak_0.7s_ease-in-out_infinite_0.2s] ${
+                                                        darkMode
+                                                            ? "bg-gray-400"
+                                                            : "bg-gray-500"
+                                                    }`}
+                                                />
+
+                                                <span
+                                                    className={`h-5 w-[3px] rounded-full animate-[speak_0.55s_ease-in-out_infinite_0.15s] ${
+                                                        darkMode
+                                                            ? "bg-gray-300"
+                                                            : "bg-gray-600"
+                                                    }`}
+                                                />
+                                            </div>
+                                        )}
+
                                         <button
                                             type="button"
                                             onClick={() =>
                                                 speakingIndex === index
                                                     ? stopSpeaking()
                                                     : speakMessage(
-                                                          msg.content,
-                                                          index
-                                                      )
+                                                        msg.content,
+                                                        index
+                                                    )
                                             }
                                             className={`shrink-0 transition ${
-                                                darkMode
-                                                    ? "text-gray-400 hover:text-white"
-                                                    : "text-gray-500 hover:text-gray-900"
+                                                speakingIndex === index
+                                                    ? darkMode
+                                                        ? "text-white"
+                                                        : "text-gray-900"
+                                                    : darkMode
+                                                        ? "text-gray-400 hover:text-white"
+                                                        : "text-gray-500 hover:text-gray-900"
                                             }`}
                                         >
                                             {speakingIndex === index ? (
-                                                <VolumeX size={20} />
+                                                <VolumeX
+                                                    size={20}
+                                                    className="animate-pulse"
+                                                />
                                             ) : (
                                                 <Volume2 size={20} />
                                             )}
@@ -255,7 +298,6 @@ function AIChat() {
                         ))
                     )}
 
-                    {/* TYPING INDICATOR */}
                     {loading && (
                         <div className="flex justify-start">
                             <div
@@ -296,7 +338,6 @@ function AIChat() {
                 </div>
             </div>
 
-            {/* INPUT AREA */}
             <form
                 onSubmit={sendMessage}
                 className={`w-full shrink-0 border-t p-3 sm:p-4 ${
@@ -306,8 +347,6 @@ function AIChat() {
                 }`}
             >
                 <div className="w-full max-w-3xl mx-auto flex min-w-0 items-center gap-2 sm:gap-3">
-
-                    {/* INPUT */}
                     <input
                         type="text"
                         value={message}
@@ -320,7 +359,6 @@ function AIChat() {
                         }`}
                     />
 
-                    {/* MICROPHONE */}
                     <button
                         type="button"
                         onClick={startListening}
@@ -335,7 +373,6 @@ function AIChat() {
                         <Mic size={22} />
                     </button>
 
-                    {/* SEND */}
                     <button
                         type="submit"
                         className={`shrink-0 px-4 sm:px-6 py-3 rounded-xl font-semibold transition ${

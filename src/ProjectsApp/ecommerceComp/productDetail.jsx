@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useEcommerce } from "./ecommerceContext";
 import { useParams, useNavigate } from "react-router-dom";
+import {
+    X,
+    Minus,
+    Plus,
+    ShoppingCart,
+    ArrowRight,
+} from "lucide-react";
 
 function ProductDetail() {
     const { product, addToCart, toast } = useEcommerce();
@@ -8,25 +15,34 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
-    
 
     const { id } = useParams();
     const navigate = useNavigate();
-    
-    
+
     const selectedProduct = product.find(
         (item) => Number(item.id) === Number(id)
     );
 
     if (!selectedProduct) {
-        return <div>Product not found...</div>;
+        return (
+            <section className="flex min-h-screen items-center justify-center bg-[#f7f7f5] px-4 text-neutral-950">
+                <div className="text-center">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
+                        Product
+                    </p>
+
+                    <h1 className="mt-3 text-3xl font-bold tracking-tight">
+                        Product not found
+                    </h1>
+                </div>
+            </section>
+        );
     }
 
     const handleAddToCart = () => {
         addToCart(
             {
                 ...selectedProduct
-                
             },
             quantity,
             selectedSize,
@@ -35,195 +51,185 @@ function ProductDetail() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-100 flex justify-center px-4 py-6 mb-10">
+        <section className="min-h-screen w-full bg-[#f7f7f5] px-4 pb-20 pt-6 text-neutral-950 sm:px-6 lg:px-10">
+            <div className="mx-auto max-w-7xl">
+                <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-5">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
+                            Product Details
+                        </p>
 
-            <div className="w-full md:w-2xl lg:w-4xl bg-white rounded-3xl mx-auto p-4 md:p-6 shadow-sm relative">
+                        <p className="mt-1 text-sm text-neutral-500">
+                            View product information and options
+                        </p>
+                    </div>
 
-                {/* Close Button */}
-                <div className="absolute right-5 top-5">
                     <button
                         onClick={() => navigate(-1)}
-                        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 shadow-sm transition hover:bg-red-500 hover:text-white hover:scale-105 active:scale-95"
+                        aria-label="Close product"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition-all duration-300 hover:border-neutral-300 hover:bg-neutral-100 hover:text-neutral-950"
                     >
-                        <i className="fa-solid fa-xmark"></i>
+                        <X className="h-5 w-5" />
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-
-                    {/* Product Image */}
-                    <div className="flex items-center justify-center bg-gray-50 rounded-2xl p-6">
+                <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                    <div className="flex min-h-[420px] items-center justify-center rounded-2xl border border-neutral-200 bg-white p-8 sm:p-12 lg:min-h-[620px]">
                         <img
                             src={selectedProduct.image}
                             alt={selectedProduct.title}
-                            className="w-full max-w-sm aspect-square object-contain"
+                            className="h-full max-h-[520px] w-full max-w-lg object-contain transition-transform duration-500 hover:scale-[1.02]"
                         />
                     </div>
 
-                    {/* Product Information */}
-                    <div className="flex flex-col px-2 py-2 gap-4">
+                    <div className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 lg:p-10">
+                        <div className="flex flex-col">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
+                                {selectedProduct.category}
+                            </p>
 
-                        <p className="text-sm text-gray-500 capitalize">
-                            {selectedProduct.category}
-                        </p>
+                            <h1 className="mt-3 text-3xl font-bold leading-tight tracking-[-0.04em] sm:text-4xl">
+                                {selectedProduct.title}
+                            </h1>
 
-                        <p className="text-xl md:text-2xl font-bold leading-tight">
-                            {selectedProduct.title}
-                        </p>
+                            <div className="mt-5 flex items-center gap-3">
+                                <div className="flex gap-1 text-sm text-yellow-400">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <span key={star}>
+                                            {star <= Math.round(selectedProduct.rating_rate)
+                                                ? "★"
+                                                : "☆"}
+                                        </span>
+                                    ))}
+                                </div>
 
-                        {/* Rating */}
-                        <div className="flex items-center gap-2">
-                            <div className="flex gap-1 text-yellow-400">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                    <i
-                                        key={star}
-                                        className={
-                                            star <= Math.round(selectedProduct.rating_rate)
-                                                ? "fa-solid fa-star"
-                                                : "fa-regular fa-star"
+                                <span className="text-xs text-neutral-500">
+                                    {selectedProduct.rating_rate} (
+                                    {selectedProduct.rating_count})
+                                </span>
+                            </div>
+
+                            <p className="mt-6 text-3xl font-bold tracking-tight">
+                                ${selectedProduct.price}
+                            </p>
+
+                            <div className="my-7 border-t border-neutral-200" />
+
+                            <div>
+                                <p className="text-sm font-semibold">
+                                    Description
+                                </p>
+
+                                <p className="mt-3 text-sm leading-relaxed text-neutral-500">
+                                    {selectedProduct.description}
+                                </p>
+                            </div>
+
+                            <div className="mt-7">
+                                <p className="text-sm font-semibold">
+                                    Size
+                                </p>
+
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                    {["S", "M", "L", "XL"].map((size) => (
+                                        <button
+                                            key={size}
+                                            onClick={() => setSelectedSize(size)}
+                                            className={`flex h-10 min-w-11 items-center justify-center rounded-lg border px-4 text-sm font-medium transition-all duration-300 ${
+                                                selectedSize === size
+                                                    ? "border-neutral-950 bg-neutral-950 text-white"
+                                                    : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400"
+                                            }`}
+                                        >
+                                            {size}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <p className="text-sm font-semibold">
+                                    Color
+                                </p>
+
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                    {["Black", "White", "Red"].map((color) => (
+                                        <button
+                                            key={color}
+                                            onClick={() => setSelectedColor(color)}
+                                            className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
+                                                selectedColor === color
+                                                    ? "border-neutral-950 bg-neutral-950 text-white"
+                                                    : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400"
+                                            }`}
+                                        >
+                                            {color}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <p className="text-sm font-semibold">
+                                    Quantity
+                                </p>
+
+                                <div className="mt-3 flex w-fit items-center overflow-hidden rounded-lg border border-neutral-200 bg-white">
+                                    <button
+                                        onClick={() =>
+                                            setQuantity((q) => Math.max(1, q - 1))
                                         }
-                                    ></i>
-                                ))}
-                            </div>
-
-                            <span className="text-sm text-gray-500">
-                                {selectedProduct.rating_rate} ({selectedProduct.rating_count})
-                            </span>
-                        </div>
-
-                        {/* Price */}
-                        <p className="text-2xl font-bold">
-                            ${selectedProduct.price}
-                        </p>
-
-                        <div className="h-px bg-gray-200"></div>
-
-                        {/* Description */}
-                        <div>
-                            <p className="font-semibold mb-1">
-                                Description
-                            </p>
-
-                            <p className="text-sm text-gray-600 leading-relaxed line-clamp-4 hover:line-clamp-none cursor-pointer">
-                                {selectedProduct.description}
-                            </p>
-                        </div>
-
-                        {/* Size */}
-                        <div>
-                            <p className="font-semibold mb-2">
-                                Size:
-                            </p>
-
-                            <div className="flex gap-2">
-                                {["S", "M", "L", "XL"].map((size) => (
-                                    <button
-                                        key={size}
-                                        onClick={() => setSelectedSize(size)}
-                                        className={`px-4 py-2 rounded-lg border transition ${
-                                            selectedSize === size
-                                                ? "bg-orange-500 text-white border-orange-500"
-                                                : "bg-white text-gray-700 hover:bg-gray-100"
-                                        }`}
+                                        aria-label="Decrease quantity"
+                                        className="flex h-10 w-10 items-center justify-center text-neutral-600 transition-colors duration-300 hover:bg-neutral-100 hover:text-neutral-950"
                                     >
-                                        {size}
+                                        <Minus className="h-4 w-4" />
                                     </button>
-                                ))}
-                            </div>
-                        </div>
 
-                        {/* Color */}
-                        <div>
-                            <p className="font-semibold mb-2">
-                                Color:
-                            </p>
+                                    <p className="flex h-10 w-12 items-center justify-center border-x border-neutral-200 text-sm font-semibold">
+                                        {quantity}
+                                    </p>
 
-                            <div className="flex gap-2">
-                                {["Black", "White", "Red"].map((color) => (
                                     <button
-                                        key={color}
-                                        onClick={() => setSelectedColor(color)}
-                                        className={`px-4 py-2 rounded-lg border transition ${
-                                            selectedColor === color
-                                                ? "bg-orange-500 text-white border-orange-500"
-                                                : "bg-white text-gray-700 hover:bg-gray-100"
-                                        }`}
+                                        onClick={() => setQuantity((q) => q + 1)}
+                                        aria-label="Increase quantity"
+                                        className="flex h-10 w-10 items-center justify-center text-neutral-600 transition-colors duration-300 hover:bg-neutral-100 hover:text-neutral-950"
                                     >
-                                        {color}
+                                        <Plus className="h-4 w-4" />
                                     </button>
-                                ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Quantity */}
-                        <div className="flex items-center gap-5 pt-2">
-                            <p className="font-semibold">
-                                Quantity:
-                            </p>
-
-                            <div className="flex items-center border rounded-lg overflow-hidden">
+                            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="flex items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-lg"
+                                >
+                                    <ShoppingCart className="h-4 w-4" />
+                                    Add to Cart
+                                </button>
 
                                 <button
                                     onClick={() =>
-                                        setQuantity(q => Math.max(1, q - 1))
+                                        navigate("/projects/e-commerce/login")
                                     }
-                                    className="px-3 py-2 hover:bg-gray-100 active:bg-gray-200 transition"
+                                    className="group flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg"
                                 >
-                                    <i className="fa-solid fa-minus text-sm"></i>
+                                    Buy Now
+                                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                 </button>
-
-                                <p className="px-5 py-2 border-x font-medium">
-                                    {quantity}
-                                </p>
-
-                                <button
-                                    onClick={() => setQuantity(q => q + 1)}
-                                    className="px-3 py-2 hover:bg-gray-100 active:bg-gray-200 transition"
-                                >
-                                    <i className="fa-solid fa-plus text-sm"></i>
-                                </button>
-
                             </div>
                         </div>
-
-                        {/* Buttons */}
-                        <div className="flex gap-3 pt-3">
-
-                            <button
-                                onClick={handleAddToCart}
-                                className="flex-1 flex items-center justify-center gap-2 border-2 border-orange-500 text-orange-500 rounded-xl py-3 font-semibold hover:bg-orange-500 hover:text-white transition"
-                            >
-                                <i className="fa-solid fa-cart-arrow-down"></i>
-
-                                <span className="hidden sm:block">
-                                    Add to Cart
-                                </span>
-                            </button>
-
-                            <button
-                                onClick={() =>
-                                    navigate("/projects/e-commerce/login")
-                                }
-                                className="flex-1 bg-orange-500 text-white rounded-xl py-3 font-semibold hover:bg-orange-600 active:scale-[0.98] transition"
-                            >
-                                Buy Now
-                            </button>
-
-                        </div>
-
                     </div>
                 </div>
             </div>
 
-            {/* Toast */}
             {toast && (
-                <div className="fixed md:bottom-5 bottom-10 left-5 z-50 animate-slide-up rounded-lg bg-black text-white px-5 py-3 shadow-lg flex items-center gap-2">
-                    <span>{toast}</span>
+                <div className="fixed bottom-20 left-4 z-50 rounded-xl bg-neutral-950 px-5 py-3 text-sm font-medium text-white shadow-xl sm:bottom-5 sm:left-5">
+                    {toast}
                 </div>
             )}
-
-        </div>
+        </section>
     );
 }
 
-export default ProductDetail;   
+export default ProductDetail;
