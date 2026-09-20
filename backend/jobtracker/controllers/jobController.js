@@ -36,9 +36,10 @@ async function createJob(req, res) {
         job_url,
         notes
     } = req.body;
-
+    const userId = req.userId;
+    console.log("USER ID:", req.userId);
     try{
-        const result = await pool.query("INSERT INTO jobs (company, position, location, status, date_applied, job_url, notes) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *", 
+        const result = await pool.query("INSERT INTO jobs (company, position, location, status, date_applied, job_url, notes, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *", 
         [
             company,
             position,
@@ -46,15 +47,19 @@ async function createJob(req, res) {
             status,
             date_applied,
             job_url,
-            notes
+            notes,
+            userId
 
         ]);
         res.status(201).json(result.rows[0]);
+        
     }catch(err){
         console.log(err.message);
         res.status(500).json({error: "Internal server error"});
     }
+    
 }
+
 async function updateJob(req, res) {
     const id = req.params.id;
     const allowedFields = [
