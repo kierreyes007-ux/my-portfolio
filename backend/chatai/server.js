@@ -37,8 +37,9 @@ app.post("/chat", async (req, res) => {
     return res.status(200).json({reply: response.candidates[0].content.parts[0].text})
     
     }catch(err){
-        return res.status(500).json({error: err.message})
-    }
+    console.error(err);
+    return res.status(500).json({error: err.message});
+}
 })
 
 app.listen(PORT, () => {
