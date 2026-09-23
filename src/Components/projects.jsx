@@ -92,7 +92,7 @@ function Projects() {
   const [currentIndex, setCurrentIndex] = useState(projects.length * 2);
   const [slideWidth, setSlideWidth] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
- 
+  const [paused, setPaused] = useState(false);
   const [dragStart, setDragStart] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
 
@@ -267,7 +267,7 @@ function Projects() {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}
-            style={{ touchAction: "pan-y" }}
+            style={{ touchAction: "pan-y", cursor: dragStart !== null ? "grabbing" : "grab"  }}
           >
             <div
               className={`flex ${
