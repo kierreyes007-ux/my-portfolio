@@ -25,7 +25,7 @@ app.post("/chat", async (req, res) => {
     try{
         
     const response = await gemini.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash-lite",
         contents: `You are a helpful general-purpose AI assistant.
         Keep responses concise, natural, and conversational.
         Avoid excessive Markdown, bold text, and unnecessary lists.
