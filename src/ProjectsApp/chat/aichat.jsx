@@ -17,17 +17,35 @@ function AIChat() {
 
     const chatEndRef = useRef(null);
     const speechIdRef = useRef(0);
+    const textareaRef = useRef(null);
+    useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    return () => {
+        html.style.overflow = previousHtmlOverflow;
+        body.style.overflow = previousBodyOverflow;
+    };
+}, []);
 
     const sendMessage = async (e) => {
         e.preventDefault();
 
-        if (!message.trim()) return;
+        if (!message.trim() || loading) return;
+
+        const currentMessage = message.trim();
 
         setMessages((prev) => [
             ...prev,
             {
                 role: "user",
-                content: message
+                content: currentMessage
             }
         ]);
 
@@ -35,16 +53,31 @@ function AIChat() {
         setLoading(true);
 
         try {
-            const response = await fetch("https://chatai-backend-zx1k.onrender.com/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message })
-            });
+            const response = await fetch(
+                "https://chatai-backend-zx1k.onrender.com/chat",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: currentMessage
+                    })
+                }
+            );
 
             if (!response.ok) {
-                throw new Error("Something went wrong");
+                const errorData = await response.json();
+
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        role: "assistant",
+                        content: errorData.error
+                    }
+                ]);
+
+                return;
             }
 
             const data = await response.json();
@@ -63,6 +96,38 @@ function AIChat() {
         }
     };
 
+    const handleMessageChange = (e) => {
+        const textarea = e.target;
+
+        setMessage(textarea.value);
+
+        textarea.style.height = "auto";
+
+        if (textarea.scrollHeight > 128) {
+            textarea.style.height = "128px";
+            textarea.style.overflowY = "auto";
+        } else {
+            textarea.style.height = `${textarea.scrollHeight}px`;
+            textarea.style.overflowY = "hidden";
+        }
+    };
+
+    useEffect(() => {
+        if (!textareaRef.current) return;
+
+        const textarea = textareaRef.current;
+
+        textarea.style.height = "auto";
+
+        if (textarea.scrollHeight > 128) {
+            textarea.style.height = "128px";
+            textarea.style.overflowY = "auto";
+        } else {
+            textarea.style.height = `${textarea.scrollHeight}px`;
+            textarea.style.overflowY = "hidden";
+        }
+    }, [message]);
+
     const startListening = () => {
         const SpeechRecognition =
             window.SpeechRecognition ||
@@ -72,6 +137,8 @@ function AIChat() {
             console.error("Speech recognition is not supported.");
             return;
         }
+
+        if (listening) return;
 
         const recognition = new SpeechRecognition();
 
@@ -122,9 +189,7 @@ function AIChat() {
 
     const stopSpeaking = () => {
         window.speechSynthesis.cancel();
-
         speechIdRef.current++;
-
         setSpeakingIndex(null);
     };
 
@@ -155,14 +220,14 @@ function AIChat() {
                         onClick={() => setDarkMode((prev) => !prev)}
                         className={`p-2 rounded-lg transition ${
                             darkMode
-                                ? "hover:bg-gray-800 text-gray-300"
-                                : "hover:bg-gray-100 text-gray-700"
+                                ? "text-gray-300 hover:bg-gray-800"
+                                : "text-gray-700 hover:bg-gray-100"
                         }`}
                     >
                         {darkMode ? (
-                            <Sun size={22} />
+                            <Sun size={21} />
                         ) : (
-                            <Moon size={22} />
+                            <Moon size={21} />
                         )}
                     </button>
                 </div>
@@ -176,9 +241,8 @@ function AIChat() {
                 }`}
             >
                 <div className="w-full max-w-3xl mx-auto space-y-4">
-
                     {messages.length === 0 ? (
-                        <div className="h-full flex items-center justify-center text-center px-4">
+                        <div className="min-h-full flex items-center justify-center text-center px-4">
                             <div>
                                 <h1 className="text-3xl sm:text-4xl font-bold mb-3">
                                     How can I help you?
@@ -207,7 +271,7 @@ function AIChat() {
                             >
                                 {msg.role === "user" ? (
                                     <div
-                                        className={`max-w-[75%] break-words whitespace-pre-wrap px-4 py-3 rounded-2xl ${
+                                        className={`max-w-[85%] sm:max-w-[75%] min-w-0 break-words whitespace-pre-wrap px-4 py-3 rounded-2xl ${
                                             darkMode
                                                 ? "bg-gray-800 text-white"
                                                 : "bg-gray-200 text-gray-900"
@@ -216,7 +280,7 @@ function AIChat() {
                                         {msg.content}
                                     </div>
                                 ) : (
-                                    <div className="flex min-w-0 max-w-[85%] items-center gap-2">
+                                    <div className="flex min-w-0 max-w-[90%] items-end gap-2">
                                         <div
                                             className={`min-w-0 break-words whitespace-pre-wrap px-4 py-3 rounded-2xl ${
                                                 darkMode
@@ -273,23 +337,23 @@ function AIChat() {
                                                         index
                                                     )
                                             }
-                                            className={`shrink-0 transition ${
+                                            className={`shrink-0 p-1 rounded-md transition ${
                                                 speakingIndex === index
                                                     ? darkMode
-                                                        ? "text-white"
-                                                        : "text-gray-900"
+                                                        ? "text-white bg-gray-800"
+                                                        : "text-gray-900 bg-gray-200"
                                                     : darkMode
-                                                        ? "text-gray-400 hover:text-white"
-                                                        : "text-gray-500 hover:text-gray-900"
+                                                        ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                                                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                                             }`}
                                         >
                                             {speakingIndex === index ? (
                                                 <VolumeX
-                                                    size={20}
+                                                    size={18}
                                                     className="animate-pulse"
                                                 />
                                             ) : (
-                                                <Volume2 size={20} />
+                                                <Volume2 size={18} />
                                             )}
                                         </button>
                                     </div>
@@ -313,7 +377,7 @@ function AIChat() {
                                             ? "bg-gray-400"
                                             : "bg-gray-500"
                                     }`}
-                                ></span>
+                                />
 
                                 <span
                                     className={`w-2 h-2 rounded-full animate-bounce [animation-delay:150ms] ${
@@ -321,7 +385,7 @@ function AIChat() {
                                             ? "bg-gray-400"
                                             : "bg-gray-500"
                                     }`}
-                                ></span>
+                                />
 
                                 <span
                                     className={`w-2 h-2 rounded-full animate-bounce [animation-delay:300ms] ${
@@ -329,64 +393,143 @@ function AIChat() {
                                             ? "bg-gray-400"
                                             : "bg-gray-500"
                                     }`}
-                                ></span>
+                                />
                             </div>
                         </div>
                     )}
 
-                    <div ref={chatEndRef}></div>
+                    <div ref={chatEndRef} />
                 </div>
             </div>
 
             <form
                 onSubmit={sendMessage}
-                className={`w-full shrink-0 border-t p-3 sm:p-4 ${
+                className={`w-full shrink-0 border-t px-3 py-3 sm:px-6 sm:py-4 ${
                     darkMode
                         ? "border-gray-800 bg-gray-950"
                         : "border-gray-200 bg-white"
                 }`}
             >
-                <div className="w-full max-w-3xl mx-auto flex min-w-0 items-center gap-2 sm:gap-3">
-                    <input
-                        type="text"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Ask something..."
-                        className={`min-w-0 flex-1 px-3 sm:px-4 py-3 rounded-xl border outline-none transition ${
+                <div className="w-full max-w-3xl mx-auto flex min-w-0 items-end gap-2">
+                    <div
+                        className={`relative min-w-0 flex-1 rounded-xl border transition focus-within:border-gray-500 ${
                             darkMode
-                                ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-gray-500"
-                                : "bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-500"
-                        }`}
-                    />
-
-                    <button
-                        type="button"
-                        onClick={startListening}
-                        className={`shrink-0 transition ${
-                            listening
-                                ? "text-red-500"
-                                : darkMode
-                                ? "text-white hover:text-gray-300"
-                                : "text-gray-900 hover:text-gray-500"
+                                ? "bg-gray-800 border-gray-700"
+                                : "bg-gray-100 border-gray-300"
                         }`}
                     >
-                        <Mic size={22} />
-                    </button>
+                        <textarea
+                            ref={textareaRef}
+                            value={message}
+                            onChange={handleMessageChange}
+                            onKeyDown={(e) => {
+                                if (
+                                    e.key === "Enter" &&
+                                    !e.shiftKey
+                                ) {
+                                    e.preventDefault();
+                                    sendMessage(e);
+                                }
+                            }}
+                            placeholder="Ask something..."
+                            rows={1}
+                            className={`chat-textarea block w-full min-w-0 resize-none overflow-y-hidden max-h-32 bg-transparent outline-none pl-3 sm:pl-4 pr-12 py-3 ${
+                                darkMode
+                                    ? "text-white placeholder-gray-500"
+                                    : "text-gray-900 placeholder-gray-500"
+                            }`}
+                        />
+
+                        <button
+                            type="button"
+                            onClick={startListening}
+                            disabled={loading}
+                            aria-label={
+                                listening
+                                    ? "Listening"
+                                    : "Use microphone"
+                            }
+                            className={`absolute right-2 bottom-2 p-2 rounded-lg transition ${
+                                listening
+                                    ? "text-red-500 bg-red-500/10"
+                                    : darkMode
+                                        ? "text-gray-400 hover:text-white hover:bg-gray-700"
+                                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-200"
+                            } ${
+                                loading
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : ""
+                            }`}
+                        >
+                            <Mic
+                                size={20}
+                                className={
+                                    listening
+                                        ? "animate-pulse"
+                                        : ""
+                                }
+                            />
+                        </button>
+                    </div>
 
                     <button
                         type="submit"
+                        disabled={loading || !message.trim()}
                         className={`shrink-0 px-4 sm:px-6 py-3 rounded-xl font-semibold transition ${
-                            darkMode
-                                ? "bg-white text-black hover:bg-gray-200"
-                                : "bg-gray-900 text-white hover:bg-gray-700"
+                            loading || !message.trim()
+                                ? darkMode
+                                    ? "bg-gray-800 text-gray-600 cursor-not-allowed"
+                                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : darkMode
+                                    ? "bg-white text-black hover:bg-gray-200"
+                                    : "bg-gray-900 text-white hover:bg-gray-700"
                         }`}
                     >
                         Send
                     </button>
                 </div>
             </form>
+
+            <style>{`
+                .chat-textarea::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                .chat-textarea::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+
+                .chat-textarea::-webkit-scrollbar-thumb {
+                    background: ${darkMode ? "#4b5563" : "#d1d5db"};
+                    border-radius: 9999px;
+                }
+
+                .chat-textarea::-webkit-scrollbar-thumb:hover {
+                    background: ${darkMode ? "#6b7280" : "#9ca3af"};
+                }
+
+                .chat-textarea {
+                    scrollbar-width: thin;
+                    scrollbar-color: ${
+                        darkMode
+                            ? "#4b5563 transparent"
+                            : "#d1d5db transparent"
+                    };
+                }
+
+                @keyframes speak {
+                    0%,
+                    100% {
+                        transform: scaleY(0.5);
+                    }
+
+                    50% {
+                        transform: scaleY(1);
+                    }
+                }
+            `}</style>
         </main>
     );
 }
 
-export default AIChat;
+export default AIChat;  
