@@ -1,5 +1,6 @@
 
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 function Navbar() {
     const linkStyle = ({ isActive }) =>
@@ -8,7 +9,7 @@ function Navbar() {
                 ? "bg-gray-100 text-gray-900"
                 : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         }`;
-
+        const { user, logoutUser } = useAuthContext();
     return (
         <nav className="w-full border-b border-gray-200 bg-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -28,6 +29,10 @@ function Navbar() {
                     <NavLink to="/jobs" className={linkStyle}>
                         Jobs
                     </NavLink>
+                    { user ? (<button type="button" onClick={() =>logoutUser()}>Logout</button>) : (
+                    <NavLink to="/login" className={linkStyle}>
+                        Login
+                    </NavLink>)}
                 </div>
 
             </div>

@@ -17,7 +17,7 @@ function Home() {
         return <Error />
     }
     if(loading){
-        return <Loading />;
+        return <Loading />
     }
     return (
         <main className="w-full min-h-screen bg-gray-50 px-4 py-8 relative">

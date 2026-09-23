@@ -1,7 +1,13 @@
 import axios from "axios";
+
 async function getJobs(){
     try{
-        const response = await axios.get("http://localhost:5000/jobs");
+        const token = localStorage.getItem("token");
+        const response = await axios.get("http://localhost:5000/jobs", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         const data = response.data;
         return response.data;
     }catch(err){
@@ -12,7 +18,13 @@ async function getJobs(){
 
 async function createJob(job){
     try{
-        const response = await axios.post("http://localhost:5000/jobs", job);
+        const token = localStorage.getItem("token");
+        const response = await axios.post("http://localhost:5000/jobs", job, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            
+        });
         return response.data
     }catch(err){
         console.log(err.message);
@@ -22,7 +34,11 @@ async function createJob(job){
 
 async function updateJob(id, updates){
     try{
-        const response = await axios.patch(`http://localhost:5000/jobs/${id}`,updates)
+        const token = localStorage.getItem("token");
+        const response = await axios.patch(`http://localhost:5000/jobs/${id}`, updates, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            } })
         return response.data
     }catch(err){
         console.log(err.message);
@@ -32,7 +48,12 @@ async function updateJob(id, updates){
 
 async function deleteJob(id){
     try{
-        await axios.delete(`http://localhost:5000/jobs/${id}`);
+        const token = localStorage.getItem("token");
+        await axios.delete(`http://localhost:5000/jobs/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
     }catch(err){
         console.log(err.message);
         throw err;

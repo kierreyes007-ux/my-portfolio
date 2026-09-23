@@ -1,15 +1,23 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import demoJobs from "../utils/jobs"
 import { getJobs, createJob, updateJob as updateJobApi, deleteJob as deleteJobApi } from "../services/jobService";
+import { getJobs as demoGetJobs, createJob as demoCreateJob, updateJob as demoUpdateJobApi, deleteJob as demoDeleteJobApi } from "../services/demoJobService";
+import { useAuthContext } from "./AuthContext";
 const JobContext = createContext();
 export function JobProvider( {children} ){
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    const { user } = useAuthContext();
 
         const addJob = async (newJob) => {
             try{
-                const createdJob = await createJob(newJob);
+                let createdJob;
+                if(user){
+                    createdJob = await createJob(newJob);
+                }
+                else{
+                    createdJob = await demoCreateJob(newJob)
+                }
                 setJobs( prev => [...prev, createdJob])
             }catch(err){
                 console.log(err.message)
@@ -18,7 +26,13 @@ export function JobProvider( {children} ){
         }
         const deleteJob = async (jobId) => {
            try{
-            const deletedJob = await deleteJobApi(jobId);
+           
+            if(user){
+            await deleteJobApi(jobId);
+            }
+            else{
+            await demoDeleteJobApi(jobId);
+            }
             setJobs( prev => prev.filter(job => job.id !== jobId))
            }catch(err){
             console.log(err.message);
@@ -26,7 +40,12 @@ export function JobProvider( {children} ){
         }
         const updateJob = async (jobId, updatedJob) => {
             try{
-            const newUpdatedJob = await updateJobApi(jobId, updatedJob)
+                let newUpdatedJob;
+                if(user){
+                    newUpdatedJob = await updateJobApi(jobId, updatedJob)
+                }else{
+                    newUpdatedJob = await demoUpdateJobApi(jobId, updatedJob)
+                }
             setJobs( prev => prev.map(job => job.id === jobId ? {...job, ...newUpdatedJob} : job))
             }catch(err){
                 console.log(err.message);
@@ -45,9 +64,15 @@ export function JobProvider( {children} ){
             async function loadJobs(){
                 
                 try{
+                    let data;
                     setLoading(true);
                     setError(null);
-              const data =  await getJobs();
+                    if(user){
+                    data =  await getJobs();
+                    }
+                    else{
+                    data = await demoGetJobs();
+                    }
               console.log(data);
               setJobs(data);
                 }catch(err){
@@ -60,7 +85,7 @@ export function JobProvider( {children} ){
             }
 
             loadJobs();
-        }, [])
+        }, [user])
     return(
         <JobContext.Provider value={value}>
             {children}

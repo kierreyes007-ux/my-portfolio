@@ -1,15 +1,12 @@
 const jwt = require("jsonwebtoken");
 
-function authenticateToken(req, res, next) {
-   
-    const authorization = req.headers.authorization;
-    if(!authorization){
-        return res.status(401).json({error: "Access token required"})
+function authenticateToken(req, res, next){
+    const token = req.cookies.token;
+    console.log(token);
+    if(!token){
+        return res.status(401).json("No access token")
     }
     try{
-    
-  
-    const token = authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.userId;
     next();
@@ -17,7 +14,5 @@ function authenticateToken(req, res, next) {
         console.log(err.message);
         return res.status(401).json({error: "Invalid token"})
     }
-
-  
-}   
-module.exports = { authenticateToken };
+}
+module.exports = {authenticateToken};

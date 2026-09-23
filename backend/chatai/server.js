@@ -31,6 +31,7 @@ app.post("/chat", async (req, res) => {
         Avoid excessive Markdown, bold text, and unnecessary lists.
         Answer the user's question directly. 
         
+        
         User: ${message}`
     })
 
