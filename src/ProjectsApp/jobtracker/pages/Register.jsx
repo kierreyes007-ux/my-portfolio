@@ -1,31 +1,45 @@
 import { useState } from "react";
-import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
-function Login(){
+function Register(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [hide, setHide] = useState(false);
-    const { loginUser } = useAuthContext();
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [hidePass, setHidePass] = useState(false);
+    const [hideConPass, setHideConPass] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { registerUser } = useAuthContext();
+    
 
     async function handleSubmit(e){
         e.preventDefault();
-        if(!email.trim() || !password.trim()) return;
-        
+
+        if(!email.trim() || !password.trim() || !confirmPassword.trim()) return;
+
+        if(password !== confirmPassword){
+            setError("Password does not match");
+            return;
+        }
+
         try{
-        await loginUser(email, password);
-        navigate("/");
+            await registerUser(email, password);
+            navigate("/login");
         }catch(err){
             console.log(err.message);
+
+            if(err.response.status === 409){
+                setError("Email already exists");
+            }
+
             if(err.response.status === 500){
                 setError("Server error");
             }
+
             if(err.response.status === 401){
-                setError(err.response.data.error);
+                setError("Unauthorized access");
             }
-           
         }
     }
 
@@ -39,11 +53,11 @@ function Login(){
                     </div>
 
                     <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-                        Welcome back
+                        Create an account
                     </h1>
 
                     <p className="text-sm text-gray-500 mt-2">
-                        Sign in to manage your job applications.
+                        Create your Job Tracker account.
                     </p>
                 </div>
 
@@ -61,41 +75,38 @@ function Login(){
                             <input
                                 type="email"
                                 value={email}
-                                onChange={(e) => { setEmail(e.target.value); setError("") }}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setError("");
+                                }}
                                 placeholder="you@example.com"
                                 className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
                             />
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between mb-2">
-                                <label className="block text-sm font-medium text-gray-700">
-                                    Password
-                                </label>
-
-                                <button
-                                    type="button"
-                                    className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
-                                >
-                                    Forgot password?
-                                </button>
-                            </div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Password
+                            </label>
 
                             <div className="relative">
                                 <input
-                                    type={hide ? "text" : "password"}
+                                    type={hidePass ? "text" : "password"}
                                     value={password}
-                                    onChange={(e) => { setPassword(e.target.value); setError("") }}
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        setError("");
+                                    }}
                                     placeholder="Enter your password"
                                     className="w-full h-11 border border-gray-300 rounded-lg px-3 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
                                 />
 
                                 <button
                                     type="button"
-                                    onClick={() => setHide(!hide)}
+                                    onClick={() => setHidePass(!hidePass)}
                                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors"
                                 >
-                                    {hide ? (
+                                    {hidePass ? (
                                         <i className="fa-regular fa-eye-slash"></i>
                                     ) : (
                                         <i className="fa-regular fa-eye"></i>
@@ -103,12 +114,49 @@ function Login(){
                                 </button>
                             </div>
                         </div>
-                            {error && (<p className="text-sm text-red-500">{error}</p>)}
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Confirm Password
+                            </label>
+
+                            <div className="relative">
+                                <input
+                                    type={hideConPass ? "text" : "password"}
+                                    value={confirmPassword}
+                                    onChange={(e) => {
+                                        setConfirmPassword(e.target.value);
+                                        setError("");
+                                    }}
+                                    placeholder="Confirm your password"
+                                    className="w-full h-11 border border-gray-300 rounded-lg px-3 pr-10 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+                                />
+
+                                <button
+                                    type="button"
+                                    onClick={() => setHideConPass(!hideConPass)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors"
+                                >
+                                    {hideConPass ? (
+                                        <i className="fa-regular fa-eye-slash"></i>
+                                    ) : (
+                                        <i className="fa-regular fa-eye"></i>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+
+                        {error && (
+                            <p className="text-sm text-red-500">
+                                {error}
+                            </p>
+                        )}
+
                         <button
                             type="submit"
                             className="w-full h-11 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 active:bg-gray-950 transition-colors"
                         >
-                            Sign in
+                            Create account
                         </button>
 
                     </div>
@@ -120,17 +168,17 @@ function Login(){
 
                         <div className="relative flex justify-center">
                             <span className="bg-white px-3 text-xs text-gray-400">
-                                New to Job Tracker?
+                                Already have an account?
                             </span>
                         </div>
                     </div>
 
                     <button
                         type="button"
-                        onClick={() => navigate("/register")}
+                        onClick={() => navigate("/login")}
                         className="w-full h-11 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
                     >
-                        Create an account
+                        Go back to log in
                     </button>
                 </form>
 
@@ -143,4 +191,4 @@ function Login(){
     );
 }
 
-export default Login;
+export default Register;

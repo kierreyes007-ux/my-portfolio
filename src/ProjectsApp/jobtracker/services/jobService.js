@@ -2,13 +2,9 @@ import axios from "axios";
 
 async function getJobs(){
     try{
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/jobs", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        const data = response.data;
+      
+        const response = await axios.get("http://localhost:5000/jobs", {withCredentials: true});
+       
         return response.data;
     }catch(err){
         console.log(err.message);
@@ -18,13 +14,8 @@ async function getJobs(){
 
 async function createJob(job){
     try{
-        const token = localStorage.getItem("token");
-        const response = await axios.post("http://localhost:5000/jobs", job, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-            
-        });
+       
+        const response = await axios.post("http://localhost:5000/jobs", job, {withCredentials: true});
         return response.data
     }catch(err){
         console.log(err.message);
@@ -34,26 +25,19 @@ async function createJob(job){
 
 async function updateJob(id, updates){
     try{
-        const token = localStorage.getItem("token");
-        const response = await axios.patch(`http://localhost:5000/jobs/${id}`, updates, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            } })
+       
+        const response = await axios.patch(`http://localhost:5000/jobs/${id}`, updates, {withCredentials: true})
         return response.data
     }catch(err){
         console.log(err.message);
-        throw err;
+        throw err;  
     }
 }
 
 async function deleteJob(id){
     try{
-        const token = localStorage.getItem("token");
-        await axios.delete(`http://localhost:5000/jobs/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+       
+        await axios.delete(`http://localhost:5000/jobs/${id}`, {withCredentials: true});
     }catch(err){
         console.log(err.message);
         throw err;

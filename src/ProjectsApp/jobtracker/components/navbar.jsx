@@ -1,6 +1,7 @@
-
+import LogoutModal from "./logoutModal";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { useState } from "react";
 
 function Navbar() {
     const linkStyle = ({ isActive }) =>
@@ -10,6 +11,7 @@ function Navbar() {
                 : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         }`;
         const { user, logoutUser } = useAuthContext();
+        const [showLogoutModal, setShowLogoutModal] = useState(false);
     return (
         <nav className="w-full border-b border-gray-200 bg-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -29,13 +31,14 @@ function Navbar() {
                     <NavLink to="/jobs" className={linkStyle}>
                         Jobs
                     </NavLink>
-                    { user ? (<button type="button" onClick={() =>logoutUser()}>Logout</button>) : (
+                    { user ? (<button className="flex items-center gap-1 sm:gap-2" type="button" onClick={() => setShowLogoutModal(!showLogoutModal)}>Logout</button>) : (
                     <NavLink to="/login" className={linkStyle}>
                         Login
                     </NavLink>)}
                 </div>
 
             </div>
+            {showLogoutModal && <LogoutModal setShowLogoutModal={setShowLogoutModal}/>}
         </nav>
     );
 }

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { login, getUser } from "../services/authService";
+import { login, getUser, register, logout } from "../services/authService";
 
 const AuthContext = createContext();
 
@@ -12,10 +12,14 @@ export function AuthProvider({children}){
         setUser(theUser) 
         return response;
     }
-    function logoutUser(){
-      
+    async function logoutUser(){
+        await logout();
         setUser(null);
         
+    }
+    async function registerUser(email, password){
+        const response = await register(email, password);
+        return response.data
     }
 
     useEffect(() => {
@@ -33,7 +37,7 @@ export function AuthProvider({children}){
         
     }, [])
 
-    const value = {user, setUser, loginUser, logoutUser}
+    const value = {user, setUser, loginUser, logoutUser, registerUser}
     return(
     <AuthContext.Provider value={value}>
         {children}

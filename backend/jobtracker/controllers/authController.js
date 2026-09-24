@@ -50,6 +50,7 @@ async function login(req, res) {
            }
            
         );
+     
         
         res.cookie("token", token, {httpOnly: true} )
         return res.status(200).json({message: "Login successful"});
@@ -60,6 +61,7 @@ async function login(req, res) {
     }
 
 }
+
 async function getUser(req, res){
     try{
        const result = await pool.query("SELECT id, email FROM users WHERE id = $1", [req.userId]);
@@ -72,4 +74,10 @@ async function getUser(req, res){
         console.log(err.message)
     }
 }
-module.exports = { register, login, getUser };
+
+function logout(req, res){
+   res.clearCookie("token");
+   return res.status(200).json({message: "Logout Successfully"});
+}
+
+module.exports = { register, login, getUser, logout };

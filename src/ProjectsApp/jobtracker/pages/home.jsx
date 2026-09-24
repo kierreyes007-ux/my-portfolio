@@ -1,4 +1,5 @@
 import { useJobContext } from "../context/JobContext";
+import { useAuthContext } from "../context/AuthContext";
 import JobCard from "../components/JobCard";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
@@ -10,6 +11,7 @@ function Home() {
     const totalInterviews = jobs.filter( job => job.status === "Interview").length;
     const totalOffers = jobs.filter( job => job.status === "Offer").length;
     const featuredJobs = [...jobs];
+    const { user } = useAuthContext();
     const navigate = useNavigate();
    
     const recentJobs = featuredJobs.sort((a,b) => new Date(b.date_applied) - new Date(a.date_applied)).slice(0, 3);
@@ -22,7 +24,7 @@ function Home() {
     return (
         <main className="w-full min-h-screen bg-gray-50 px-4 py-8 relative">
             <div className="max-w-6xl mx-auto">
-                <header className="mb-8">
+                <header className="mb-8"> {user === null ? (<>
                     <h1 className="text-3xl font-semibold text-gray-900">
                         Job Tracker
                     </h1>
@@ -30,6 +32,15 @@ function Home() {
                     <p className="text-sm text-gray-500 mt-1">
                         Keep track of your job applications and their progress.
                     </p>
+                    </>) : (<>
+                    <h1 className="text-2xl font-semibold text-gray-900">
+                        Welcome back, {user?.email?.split("@")[0].charAt(0).toUpperCase() + user?.email?.split("@")[0].slice(1)}
+                    </h1>
+
+                    <p className="text-sm text-gray-500 mt-1">
+                        Keep track of your job applications and their progress.
+                    </p>
+                     </>)}   
                 </header>
                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
                     <div className=" p-4 rounded-md bg-white shadow-sm border-l-4 border-gray-400">
