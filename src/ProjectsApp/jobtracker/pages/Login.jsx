@@ -16,7 +16,7 @@ function Login(){
         
         try{
         await loginUser(email, password);
-        navigate("/");
+        navigate("/projects/job-tracker/.");
         }catch(err){
             console.log(err.message);
             if(err.response.status === 500){

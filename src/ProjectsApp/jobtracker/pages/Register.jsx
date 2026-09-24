@@ -25,7 +25,7 @@ function Register(){
 
         try{
             await registerUser(email, password);
-            navigate("/login");
+            navigate("/projects/job-tracker/login");
         }catch(err){
             console.log(err.message);
 
