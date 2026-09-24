@@ -19,7 +19,7 @@ function ProjectDetail() {
     "e-commerce": Ecommerce,
     "job-tracker": JobTracker,
     "AI-assistance": AIChat,
-    calculator: Calculator,
+    "calculator": Calculator,
     "expense-tracker": Expense,
     "weather-app": Weather,
     "events-management": Events,
@@ -33,6 +33,13 @@ function ProjectDetail() {
       category: "Full-Stack Web Application",
       description:
         "A full-stack e-commerce application built with React, Node.js, Express, and PostgreSQL.",
+      tech: "React • Tailwind CSS • Node.js • Express • PostgreSQL",
+    },
+    "job-tracker": {
+      title: "Job Tracker",
+      category: "Full-Stack Web Application",
+      description:
+        "Full-stack job application tracker built with React featuring application management, status tracking, dashboard statistics, and user authentication, with a Node.js and Express backend connected to PostgreSQL",
       tech: "React • Tailwind CSS • Node.js • Express • PostgreSQL",
     },
     "AI-assistance": {
