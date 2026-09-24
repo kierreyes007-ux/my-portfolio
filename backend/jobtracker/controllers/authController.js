@@ -52,7 +52,7 @@ async function login(req, res) {
         );
      
         
-        res.cookie("token", token, {httpOnly: true} )
+        res.cookie("token", token, {httpOnly: true, secure: true, sameSite: "none"} )
         return res.status(200).json({message: "Login successful"});
 
     }catch(err){
@@ -76,7 +76,7 @@ async function getUser(req, res){
 }
 
 function logout(req, res){
-   res.clearCookie("token");
+   res.clearCookie("token",{httpOnly: true, secure: true, sameSite: "none"});
    return res.status(200).json({message: "Logout Successfully"});
 }
 
