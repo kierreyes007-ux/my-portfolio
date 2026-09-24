@@ -1,86 +1,95 @@
 import { Link } from "react-router-dom";
+
 function Register() {
-
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 mb-10">
-            <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
-                <h1 className="text-3xl font-bold text-center text-gray-900">
-                    Create Account
-                </h1>
-
-                <p className="text-center text-gray-500 mt-2 mb-8">
-                    Sign up to get started
-                </p>
-
-                <form className="space-y-5">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Name
-                        </label>
-
-                        <input
-                            type="text"
-                            placeholder="Enter your name"
-                            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            placeholder="Create a password"
-                            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Confirm Password
-                        </label>
-
-                        <input
-                            type="password"
-                            placeholder="Confirm your password"
-                            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-black transition"
-                    >
-                        Create Account
-                    </button>
-
-                    <p className="text-center text-gray-500 text-sm">
-                        Already have an account?{" "}
-                        <Link to='/projects/e-commerce/login'>
-                        <button
-                            type="button"
-                            className="font-semibold text-gray-900 hover:underline"
-                        >
-                            Log In
-                        </button></Link>
+        <section className="flex min-h-screen w-full items-center justify-center bg-[#f7f7f5] px-4 py-10 text-neutral-950 sm:px-6">
+            <div className="w-full max-w-md">
+                <div className="mb-8 text-center">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
+                        Account
                     </p>
-                </form>
+
+                    <h1 className="mt-3 text-4xl font-bold tracking-[-0.04em] sm:text-5xl">
+                        Create Account
+                    </h1>
+
+                    <p className="mt-3 text-sm text-neutral-500">
+                        Sign up to get started.
+                    </p>
+                </div>
+
+                <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
+                    <form className="space-y-5">
+                        <div>
+                            <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                placeholder="Enter your name"
+                                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-950 outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-950 outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                placeholder="Create a password"
+                                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-950 outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                                Confirm Password
+                            </label>
+
+                            <input
+                                type="password"
+                                placeholder="Confirm your password"
+                                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-950 outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full rounded-full bg-neutral-950 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg"
+                        >
+                            Create Account
+                        </button>
+
+                        <div className="border-t border-neutral-200 pt-5 text-center">
+                            <p className="text-sm text-neutral-500">
+                                Already have an account?{" "}
+                                <Link
+                                    to="/projects/e-commerce/login"
+                                    className="font-semibold text-neutral-950 transition-colors duration-300 hover:text-blue-600"
+                                >
+                                    Log In
+                                </Link>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 
