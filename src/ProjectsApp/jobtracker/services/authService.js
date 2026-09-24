@@ -1,7 +1,7 @@
 import axios from "axios";
 async function login(email, password){
     try{
-        const response = await axios.post("http://localhost:5000/auth/login", {email, password}, {withCredentials: true});
+        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/login", {email, password}, {withCredentials: true});
         return response.data;
     }catch(err){
         console.log(err.message)
@@ -11,7 +11,7 @@ async function login(email, password){
 
 async function getUser(){
     try{
-        const response = await axios.post("http://localhost:5000/auth/me", {},
+        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/me", {},
             {
                 withCredentials: true
             }
@@ -26,7 +26,7 @@ async function getUser(){
 
 async function register(email, password){
     try{
-        const response = await axios.post("http://localhost:5000/auth/register", {email, password});
+        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/register", {email, password});
         return response.data;
     }catch(err){
         console.log(err.message);
@@ -35,7 +35,7 @@ async function register(email, password){
 }
 async function logout(){
     try{
-       const response = await axios.post("http://localhost:5000/auth/logout", {}, {
+       const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/logout", {}, {
         withCredentials: true
        })
        return response.data;

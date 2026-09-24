@@ -1,7 +1,7 @@
 import axios from "axios";
 async function getJobs(){
     try{
-        const response = await axios.get("http://localhost:5000/demo-jobs");
+        const response = await axios.get("https://jobtracker-backend-bk4w.onrender.com/demo-jobs");
      
         return response.data;
     }catch(err){
@@ -12,7 +12,7 @@ async function getJobs(){
 
 async function createJob(job){
     try{
-        const response = await axios.post("http://localhost:5000/demo-jobs", job);
+        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/demo-jobs", job);
         return response.data
     }catch(err){
         console.log(err.message);
@@ -22,7 +22,7 @@ async function createJob(job){
 
 async function updateJob(id, updates){
     try{
-        const response = await axios.patch(`http://localhost:5000/demo-jobs/${id}`, updates)
+        const response = await axios.patch(`https://jobtracker-backend-bk4w.onrender.com/demo-jobs/${id}`, updates)
         return response.data
     }catch(err){
         console.log(err.message);
@@ -32,7 +32,7 @@ async function updateJob(id, updates){
 
 async function deleteJob(id){
     try{
-        await axios.delete(`http://localhost:5000/demo-jobs/${id}`);
+        await axios.delete(`https://jobtracker-backend-bk4w.onrender.com/demo-jobs/${id}`);
     }catch(err){
         console.log(err.message);
         throw err;

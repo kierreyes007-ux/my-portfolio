@@ -3,7 +3,7 @@ import axios from "axios";
 async function getJobs(){
     try{
       
-        const response = await axios.get("http://localhost:5000/jobs", {withCredentials: true});
+        const response = await axios.get("https://jobtracker-backend-bk4w.onrender.com/jobs", {withCredentials: true});
        
         return response.data;
     }catch(err){
@@ -15,7 +15,7 @@ async function getJobs(){
 async function createJob(job){
     try{
        
-        const response = await axios.post("http://localhost:5000/jobs", job, {withCredentials: true});
+        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/jobs", job, {withCredentials: true});
         return response.data
     }catch(err){
         console.log(err.message);
@@ -26,7 +26,7 @@ async function createJob(job){
 async function updateJob(id, updates){
     try{
        
-        const response = await axios.patch(`http://localhost:5000/jobs/${id}`, updates, {withCredentials: true})
+        const response = await axios.patch(`https://jobtracker-backend-bk4w.onrender.com/jobs/${id}`, updates, {withCredentials: true})
         return response.data
     }catch(err){
         console.log(err.message);
@@ -37,7 +37,7 @@ async function updateJob(id, updates){
 async function deleteJob(id){
     try{
        
-        await axios.delete(`http://localhost:5000/jobs/${id}`, {withCredentials: true});
+        await axios.delete(`https://jobtracker-backend-bk4w.onrender.com/jobs/${id}`, {withCredentials: true});
     }catch(err){
         console.log(err.message);
         throw err;
