@@ -17,22 +17,22 @@ function Navbar() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
                 
                 <NavLink
-                    to="/"
+                    to="/projects/job-tracker/."
                     className="text-lg sm:text-xl font-semibold text-gray-900"
                 >
                     Job Tracker
                 </NavLink>
 
                 <div className="flex items-center gap-1 sm:gap-2">
-                    <NavLink to="/" className={linkStyle}>
+                    <NavLink to="/projects/job-tracker/." className={linkStyle}>
                         Home
                     </NavLink>
 
-                    <NavLink to="/jobs" className={linkStyle}>
+                    <NavLink to="/projects/job-tracker/jobs" className={linkStyle}>
                         Jobs
                     </NavLink>
                     { user ? (<button className="flex items-center gap-1 sm:gap-2" type="button" onClick={() => setShowLogoutModal(!showLogoutModal)}>Logout</button>) : (
-                    <NavLink to="/login" className={linkStyle}>
+                    <NavLink to="/projects/job-tracker/login" className={linkStyle}>
                         Login
                     </NavLink>)}
                 </div>

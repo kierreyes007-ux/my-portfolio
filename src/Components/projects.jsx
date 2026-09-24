@@ -6,6 +6,7 @@ import todolist from "../assets/Photos/Todolist.png";
 import weatherapp from "../assets/Photos/WeatherApp.png";
 import calculator from "../assets/Photos/Calculator.png";
 import ecommerce from "../assets/Photos/Ecommence.png";
+import jobtracker from "../assets/Photos/jobtracker.png";
 
 function Projects() {
   const projects = [
@@ -15,6 +16,16 @@ function Projects() {
       slug: "e-commerce",
       description:
         "Full-stack e-commerce website built with React featuring product browsing, categories, shopping cart functionality, and a responsive user interface, with a Node.js and Express backend connected to PostgreSQL.",
+      tech: "React.js • Tailwind CSS • Node.js • Express • PostgreSQL",
+      
+    },
+
+    {
+      image: jobtracker,
+      title: "Job Tracker",
+      slug: "job-tracker",
+      description:
+        "Full-stack job application tracker built with React featuring application management, status tracking, dashboard statistics, and user authentication, with a Node.js and Express backend connected to PostgreSQL",
       tech: "React.js • Tailwind CSS • Node.js • Express • PostgreSQL",
       
     },

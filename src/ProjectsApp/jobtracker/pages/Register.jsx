@@ -175,7 +175,7 @@ function Register(){
 
                     <button
                         type="button"
-                        onClick={() => navigate("/login")}
+                        onClick={() => navigate("/projects/job-tracker/login")}
                         className="w-full h-11 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
                     >
                         Go back to log in

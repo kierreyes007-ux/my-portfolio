@@ -7,6 +7,7 @@ import Movie from "../ProjectsApp/movie";
 import Prac from "../ProjectsApp/todolist";
 import Ecommerce from "../ProjectsApp/ecommerce";
 import AIChat from "../ProjectsApp/chatai";
+import JobTracker from "../ProjectsApp/jobtracker";
 
 function ProjectDetail() {
   const { slug } = useParams();
@@ -15,6 +16,7 @@ function ProjectDetail() {
   // STEP 2: connect URL → component
   const projectMap = {
     "e-commerce": Ecommerce,
+    "job-tracker": JobTracker,
     "AI-assistance": AIChat,
     "calculator": Calculator,
     "expense-tracker": Expense,

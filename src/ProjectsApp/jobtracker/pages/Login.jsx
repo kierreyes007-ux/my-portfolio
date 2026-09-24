@@ -127,7 +127,7 @@ function Login(){
 
                     <button
                         type="button"
-                        onClick={() => navigate("/register")}
+                        onClick={() => navigate("/projects/job-tracker/register")}
                         className="w-full h-11 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
                     >
                         Create an account
