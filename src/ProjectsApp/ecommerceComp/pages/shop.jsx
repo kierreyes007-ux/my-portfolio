@@ -1,5 +1,6 @@
-import { useEcommerce } from "./ecommerceContext";
+import { useEcommerce } from "../context/ecommerceContext";
 import { Link, useParams } from "react-router-dom";
+import LoginModal from "../components/loginModal";
 
 function Shop() {
   const {
@@ -9,6 +10,8 @@ function Shop() {
     confirmRequest,
     requestAddToCart,
     toast,
+    loginModal,
+    setLoginModal
   } = useEcommerce();
 
   const { category } = useParams();
@@ -104,7 +107,7 @@ function Shop() {
       {showConfirm && (
         <div
           onClick={() => cancelRequest()}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
+          className="fixed inset-0 z-47 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
         >
           <div
             onClick={(event) => event.stopPropagation()}
@@ -140,6 +143,7 @@ function Shop() {
           </div>
         </div>
       )}
+      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
     </section>
   );
 }

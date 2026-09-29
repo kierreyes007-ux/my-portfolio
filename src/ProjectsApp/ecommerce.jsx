@@ -1,28 +1,22 @@
-  import Navbar from "./ecommerceComp/navbar";
-  import Cart from "./ecommerceComp/cart";
-  import Home from "./ecommerceComp/home";
-  import Shop from "./ecommerceComp/shop";
-  import Login from "./ecommerceComp/login";
-  import Contact from "./ecommerceComp/contact";
-  import Register from "./ecommerceComp/register";
-  import ProductDetail from "./ecommerceComp/productDetail";
-  import Categories from "./ecommerceComp/categories";
-  import Loader from "./ecommerceComp/loader";
-  import ErrorScreen from "./ecommerceComp/errorScreen";
-  import { useEcommerce } from "./ecommerceComp/ecommerceContext";
+  import Navbar from "./ecommerceComp/components/navbar";
+  import Cart from "./ecommerceComp/pages/cart";
+  import Home from "./ecommerceComp/pages/home";
+  import Shop from "./ecommerceComp/pages/shop";
+  import Login from "./ecommerceComp/pages/login";
+  import Contact from "./ecommerceComp/pages/contact";
+  import Register from "./ecommerceComp/pages/register";
+  import ProductDetail from "./ecommerceComp/components/productDetail";
+  import Categories from "./ecommerceComp/pages/categories";
   import { Routes, Route } from "react-router-dom";
+  import { AuthProvider } from "./ecommerceComp/context/authContext";
+  import { EcommerceProvider } from "./ecommerceComp/context/ecommerceContext";
   function Ecommerce(){
-     const { loading, error } = useEcommerce();
-
-     if(loading){
-      return <Loader />
-     }
-     if(error) {
-      return <ErrorScreen error={error}/>
-     }
+     
     return(
      
       <div>
+        <AuthProvider>
+          <EcommerceProvider>
           <Navbar />
           
           <Routes>
@@ -36,7 +30,8 @@
               <Route path="categories" element={<Categories />} />
               <Route path="product/:id" element={<ProductDetail />} />
           </Routes>
-
+          </EcommerceProvider>
+          </AuthProvider>
       </div>
     )
   }

@@ -1,10 +1,12 @@
-import strahob from "../../assets/imgecom/straho-banner.jpg";
-import straho from "../../assets/imgecom/straho.jpg";
-import { useEcommerce } from "./ecommerceContext";
+import strahob from "../../../assets/imgecom/straho-banner.jpg";
+import straho from "../../../assets/imgecom/straho.jpg";
+import ErrorScreen from "../components/errorScreen";
+import Loader from "../components/loader";
+import { useEcommerce } from "../context/ecommerceContext";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { product } = useEcommerce();
+  const { product, error, loading } = useEcommerce();
 
   return (
     <section className="min-h-screen w-full bg-[#f7f7f5] px-4 pb-16 pt-4 text-neutral-950 sm:px-6 lg:px-10">

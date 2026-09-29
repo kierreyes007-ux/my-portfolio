@@ -1,4 +1,4 @@
-import { useEcommerce } from "./ecommerceContext";
+import { useEcommerce } from "../context/ecommerceContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Minus, Plus, Trash2, ChevronUp, ChevronDown } from "lucide-react";
@@ -195,7 +195,7 @@ function Cart() {
                                     </span>
                                 </div>
 
-                                <button
+                                <button disabled
                                     onClick={() => navigate("/projects/e-commerce/login")}
                                     className="mt-5 w-full rounded-full bg-neutral-950 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg"
                                 >

@@ -1,7 +1,8 @@
 import axios from "axios";
+const API_URL = import.meta.env.VITE_JOBTRACKER_API_URL;
 async function login(email, password){
     try{
-        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/login", {email, password}, {withCredentials: true});
+        const response = await axios.post(`${API_URL}/auth/login`, {email, password}, {withCredentials: true});
         return response.data;
     }catch(err){
         console.log(err.message)
@@ -11,7 +12,7 @@ async function login(email, password){
 
 async function getUser(){
     try{
-        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/me", {},
+        const response = await axios.post(`${API_URL}/auth/me`, {},
             {
                 withCredentials: true
             }
@@ -26,7 +27,7 @@ async function getUser(){
 
 async function register(email, password){
     try{
-        const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/register", {email, password});
+        const response = await axios.post(`${API_URL}/auth/register`, {email, password});
         return response.data;
     }catch(err){
         console.log(err.message);
@@ -35,7 +36,7 @@ async function register(email, password){
 }
 async function logout(){
     try{
-       const response = await axios.post("https://jobtracker-backend-bk4w.onrender.com/auth/logout", {}, {
+       const response = await axios.post(`${API_URL}/auth/logout`, {}, {
         withCredentials: true
        })
        return response.data;

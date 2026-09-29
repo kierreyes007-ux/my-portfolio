@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEcommerce } from "./ecommerceContext";
+import { useEcommerce } from "../context/ecommerceContext";
 
 function Categories() {
   const { product } = useEcommerce();

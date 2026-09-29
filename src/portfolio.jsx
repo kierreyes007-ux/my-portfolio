@@ -6,7 +6,6 @@ import Contact from "./Components/contact";
 import Hero from "./Components/hero";
 import About from "./Components/about";
 import Footer from "./Components/footer";
-import { EcommerceProvider } from "./ProjectsApp/ecommerceComp/ecommerceContext";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -55,8 +54,7 @@ function Portfolio() {
         />
 
         
-        <Route path="/projects/:slug/*" element={<EcommerceProvider>
-          <ProjectDetail /> </EcommerceProvider>} />
+        <Route path="/projects/:slug/*" element={<ProjectDetail />} />
 
       </Routes>
     </BrowserRouter>

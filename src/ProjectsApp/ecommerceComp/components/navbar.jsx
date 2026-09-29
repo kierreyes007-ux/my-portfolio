@@ -6,9 +6,14 @@ import {
   Store,
   Boxes,
   Phone,
+  LogOut,
 } from "lucide-react";
-
+import { useAuthContext } from "../context/authContext";
+import LogoutModal from "./logoutModal";
+import { useState } from "react";
 function Navbar() {
+  const { user, logoutUser } = useAuthContext();
+  const [showModal, setShowModal] = useState(false);
   return (
     <nav className="w-full bg-white text-neutral-950">
       <div className="hidden border-b border-neutral-200 md:block">
@@ -17,8 +22,8 @@ function Navbar() {
             to="/projects/e-commerce/."
             className="group"
           >
-            <h1 className="text-2xl font-bold tracking-[-0.03em] transition-colors duration-300 group-hover:text-blue-600">
-              E-commerce
+            <h1 className="text-2xl font-bold tracking-[-0.03em] transition-colors duration-300 group-hover:text-blue-600"> {user ? `Welcome, ${user.name}` :  "E-commerce"}
+              
             </h1>
           </Link>
 
@@ -60,13 +65,16 @@ function Navbar() {
                 <ShoppingCart className="h-5 w-5" />
               </Link>
 
-              <Link
+              { user ? (<LogOut onClick={() => setShowModal(true)} className="h-5 w-5 hover:text-red-500 transition-colors" />) :
+              (<Link
                 to="/projects/e-commerce/login"
                 aria-label="Account"
                 className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 transition-all duration-300 hover:bg-neutral-100 hover:text-blue-600"
-              >
+              > 
                 <CircleUserRound className="h-5 w-5" />
-              </Link>
+                
+              </Link>)
+                }
             </div>
           </div>
         </div>
@@ -74,17 +82,18 @@ function Navbar() {
 
       <div className="md:hidden">
         <div className="flex h-16 items-center justify-between border-b border-neutral-200 px-5">
+          {user ? (<LogOut onClick={() => setShowModal(true)} className="h-5 w-5 hover:text-red-500 transition-colors" />) : (
           <Link
             to="/projects/e-commerce/login"
             aria-label="Account"
             className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 transition-colors duration-300 hover:bg-neutral-100 hover:text-blue-600"
           >
             <CircleUserRound className="h-5 w-5" />
-          </Link>
+          </Link>)}
 
           <Link to="/projects/e-commerce/.">
             <h1 className="text-xl font-bold tracking-[-0.03em]">
-              E-commerce
+              {user ? `Hi, ${user.name}` :  "E-commerce"}
             </h1>
           </Link>
 
@@ -141,6 +150,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+     { showModal && <LogoutModal setShowModal={setShowModal} logoutUser={logoutUser}/>}
     </nav>
   );
 }

@@ -19,7 +19,7 @@ export function AuthProvider({children}){
     }
     async function registerUser(email, password){
         const response = await register(email, password);
-        return response.data
+        return response;
     }
 
     useEffect(() => {

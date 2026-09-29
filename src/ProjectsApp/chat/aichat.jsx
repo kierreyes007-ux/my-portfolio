@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+const API_URL = import.meta.env.VITE_CHATAI_API_URL;
 import {
     Mic,
     Volume2,
@@ -54,7 +55,7 @@ function AIChat() {
 
         try {
             const response = await fetch(
-                "https://chatai-backend-zx1k.onrender.com/chat",
+                `${API_URL}/chat`,
                 {
                     method: "POST",
                     headers: {

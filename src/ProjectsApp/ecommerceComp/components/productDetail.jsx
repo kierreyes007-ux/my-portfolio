@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useEcommerce } from "./ecommerceContext";
+import { useEcommerce } from "../context/ecommerceContext";
+import { useAuthContext } from "../context/authContext";
 import { useParams, useNavigate } from "react-router-dom";
 import {
     X,
@@ -15,7 +16,7 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
-
+    const { user } = useAuthContext();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -209,10 +210,11 @@ function ProductDetail() {
                                 </button>
 
                                 <button
+                                    disabled={!!user}
                                     onClick={() =>
                                         navigate("/projects/e-commerce/login")
                                     }
-                                    className="group flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg"
+                                    className="group flex items-center justify-center gap-2 rounded-full bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg" 
                                 >
                                     Buy Now
                                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

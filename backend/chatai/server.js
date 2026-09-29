@@ -5,7 +5,8 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: "https://kierreyes.vercel.app",
+credentials: true}));    
 
 // Initialize client
 const gemini = new GoogleGenAI({
