@@ -6,7 +6,7 @@ import { useEcommerce } from "../context/ecommerceContext";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { product, productRrror, productLoading } = useEcommerce();
+  const { product, productError, productLoading } = useEcommerce();
 
   return (
     <section className="min-h-screen w-full bg-[#f7f7f5] px-4 pb-16 pt-4 text-neutral-950 sm:px-6 lg:px-10">

@@ -39,7 +39,7 @@ export function EcommerceProvider({children}){
                 setProduct(data);  
             } catch(err){
             console.error(err);
-            setProductError(err.response.data.error);
+            setProductError(err.response?.data?.error || "Something went wrong");
             } finally{
                 setProductLoading(false);  
             }
@@ -53,7 +53,7 @@ export function EcommerceProvider({children}){
             setCart(data);
         }catch(err){
             console.error(err);
-            setError(err.response.data.error);
+            setError(err.response?.data?.error || "Something went wrong");
         }finally{
             setLoading(false);
         }
