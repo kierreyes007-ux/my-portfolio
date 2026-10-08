@@ -41,23 +41,23 @@ function Profile(){
                 </div>
 
                 <div className="grid grid-cols-4 items-center w-full pb-4">
-                    <div className="grid">
-                     <div className="flex gap-2"><WalletCards className="md:h-10 md:w-10 h-7 w-7 text-orange-500"/><p className="text-base md:text-lg">To Pay</p></div>   
+                    <div className="grid gap-2">
+                     <div className="md:flex gap-2"><WalletCards className="md:h-10 md:w-10 h-7 w-7 text-orange-500"/><p className="text-base md:text-lg">To Pay</p></div>   
                         <p className="mx-6 text-xl md:text-2xl">0</p>
                     </div>
                     
-                    <div className="grid">
-                     <div className="flex gap-2"><Package className="md:h-10 md:w-10 h-7 w-7 text-blue-500"/><p>To Pay</p></div>   
+                    <div className="grid gap-2">
+                     <div className="md:flex gap-2"><Package className="md:h-10 md:w-10 h-7 w-7 text-blue-500"/><p>To Pay</p></div>   
                         <p className="mx-6 text-xl md:text-2xl">0</p>
                     </div>
 
-                    <div className="grid">
-                     <div className="flex gap-2"><Truck className="md:h-10 md:w-10 h-7 w-7 text-green-500"/><p>To Pay</p></div>   
+                    <div className="grid gap-2">
+                     <div className="md:flex gap-2"><Truck className="md:h-10 md:w-10 h-7 w-7 text-green-500"/><p>To Pay</p></div>   
                         <p className="mx-6 text-xl md:text-2xl">0</p>
                     </div>
 
-                    <div className="grid">
-                     <div className="flex gap-2"><CircleCheck className="md:h-10 md:w-10 h-7 w-7 text-violet-500"/><p>To Pay</p></div>   
+                    <div className="grid gap-2">
+                     <div className="md:flex gap-2"><CircleCheck className="md:h-10 md:w-10 h-7 w-7 text-violet-500"/><p>To Pay</p></div>   
                         <p className="mx-6 text-xl md:text-2xl">0</p>
                     </div>
                 </div>
