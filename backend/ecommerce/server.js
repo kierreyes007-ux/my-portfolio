@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-app.use(cors({origin: "https://kierreyes.vercel.app",
+app.use(cors({origin: ["https://kierreyes.vercel.app", "http://localhost:5173"],
 credentials: true}));    
 app.use(cookie());
 app.use("/products", productRoutes);

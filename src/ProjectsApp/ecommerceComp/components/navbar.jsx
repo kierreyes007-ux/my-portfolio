@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ShoppingCart,
   CircleUserRound,
@@ -14,6 +14,7 @@ import { useState } from "react";
 function Navbar() {
   const { user, logoutUser } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate;
   return (
     <nav className="w-full bg-white text-neutral-950">
       <div className="hidden border-b border-neutral-200 md:block">
@@ -65,7 +66,12 @@ function Navbar() {
                 <ShoppingCart className="h-5 w-5" />
               </Link>
 
-              { user ? (<LogOut onClick={() => setShowModal(true)} className="h-5 w-5 hover:text-red-500 transition-colors" />) :
+              {user && <Link to="/projects/e-commerce/profile"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 transition-all duration-300 hover:bg-neutral-100 hover:text-blue-600">
+              <CircleUserRound className="h-5 w-5" /> 
+              </Link> }
+
+              { user ? (<button className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 transition-all duration-300 hover:bg-neutral-100 hover:text-blue-600"><LogOut onClick={() => setShowModal(true)} className="h-5 w-5 hover:text-red-500 transition-colors" /> </button>) :
               (<Link
                 to="/projects/e-commerce/login"
                 aria-label="Account"
@@ -75,6 +81,7 @@ function Navbar() {
                 
               </Link>)
                 }
+               
             </div>
           </div>
         </div>
@@ -139,14 +146,19 @@ function Navbar() {
               <ShoppingCart className="h-5 w-5" />
               <span className="text-[10px] font-medium">Cart</span>
             </Link>
-
+            
+            {user ? (<Link to="/projects/e-commerce/profile"
+            className="flex flex-col items-center gap-1 py-1 text-neutral-500 transition-colors duration-300 hover:text-blue-600">
+              <CircleUserRound className="h-5 w-5" /> 
+              <span className="text-[10px] font-medium">Me</span>
+              </Link>) : (
             <Link
               to="/projects/e-commerce/contact"
               className="flex flex-col items-center gap-1 py-1 text-neutral-500 transition-colors duration-300 hover:text-blue-600"
             >
               <Phone className="h-5 w-5" />
               <span className="text-[10px] font-medium">Contact</span>
-            </Link>
+            </Link> )}
           </div>
         </div>
       </div>

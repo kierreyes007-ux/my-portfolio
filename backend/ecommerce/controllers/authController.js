@@ -47,8 +47,8 @@ async function login(req, res){
             process.env.JWT_REFRESH,
             {expiresIn: "7d"}
         );
-        res.cookie("token", accessToken, {httpOnly: true, secure: false, sameSite: "lax"});
-        res.cookie("refreshToken", refreshToken, {httpOnly: true, secure: false, sameSite: "lax"});
+        res.cookie("token", accessToken, {httpOnly: true, secure: true, sameSite: "none"});
+        res.cookie("refreshToken", refreshToken, {httpOnly: true, secure: true, sameSite: "none"});
         return res.status(200).json({message: "Login Successfully"})
 
     }catch(err){
@@ -70,8 +70,8 @@ async function getCurrentUser(req, res){
     }
 }
 function logoutUser(req, res){
-    res.clearCookie("token", {httpOnly: true, secure: false, sameSite: "lax"});
-    res.clearCookie("refreshToken", {httpOnly: true, secure: false, sameSite: "lax"});
+    res.clearCookie("token", {httpOnly: true, secure: true, sameSite: "none"});
+    res.clearCookie("refreshToken", {httpOnly: true, secure: true, sameSite: "none"});
     return res.status(200).json({message: "logout successful"});
 }
 async function refresh(req, res){
@@ -83,7 +83,7 @@ async function refresh(req, res){
             process.env.JWT_SECRET,
             {expiresIn: "10s"}
         );
-        res.cookie("token", accessToken, {httpOnly: true, secure: false, sameSite: "lax"});
+        res.cookie("token", accessToken, {httpOnly: true, secure: true, sameSite: "none"});
         return res.status(200).json({message: "Access token refreshed"});
     }catch(err){
         console.log(err.message);

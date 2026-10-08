@@ -5,14 +5,16 @@ import { useAuthContext } from "../context/authContext";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loginUser } = useAuthContext();
+    const { loginUser, guest, setGuest } = useAuthContext();
     const [error, setError] = useState("");
+    const [toast, setToast] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function handleSubmit(e){
         e.preventDefault();
         if(!email.trim() || !password.trim()) return;
-
+        setLoading(true);
         try{
             await loginUser(email, password);   
             navigate("/projects/e-commerce/.");
@@ -25,6 +27,8 @@ function Login() {
                 setError(err.response.data.error);
             }
             
+        }finally{
+            setLoading(false);
         }
 
 
@@ -93,6 +97,13 @@ function Login() {
                             Log In
                         </button>
 
+                        <button className="w-full rounded-full border-neutral-100 py-3 text-sm font-semibold text-black transition-all duration-300 hover:bg-neutral-200 hover:shadow-lg" type="button" onClick={() => {setGuest(true); setToast("Continuing as a guest...");
+                        setTimeout(() => {
+                             navigate("/projects/e-commerce/.");
+                        }, 2000);}}
+                        >Continue as a Guest
+                        </button>
+                        
                         <div className="border-t border-neutral-200 pt-5 text-center">
                             <p className="text-sm text-neutral-500">
                                 Don't have an account?{" "}
@@ -107,6 +118,8 @@ function Login() {
                     </form>
                 </div>
             </div>
+            {loading && ( <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80"> <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-200 border-t-neutral-950" /> <p className="mt-3 text-sm text-neutral-600">Logging in...</p> </div> )}
+            {toast && ( <div className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full bg-neutral-950 px-5 py-3 text-sm font-medium text-white shadow-lg"> <div className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-600 border-t-white" /> {toast} </div> )}
         </section>
     );
 }

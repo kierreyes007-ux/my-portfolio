@@ -5,6 +5,7 @@
     export function AuthProvider({children}){
         const [user, setUser] = useState(null);
         const [authLoading, setAuthLoading] = useState(true);
+        const [guest, setGuest] = useState(false);
         useEffect(() => {
             async function getUser(){
                 try{
@@ -19,14 +20,7 @@
             }
             getUser();
         }, [])
-        useEffect(() => {
-            try{
-
-            }catch(err){
-                console.log(err);
-            }
-
-        },[])
+       
         async function loginUser(email, password){
             const response = await login(email, password);
             const data = await getCurrentUser();
@@ -43,7 +37,7 @@
           return response;
         }
         
-        const value ={user, authLoading, registerUser, loginUser, logoutUser};
+        const value ={user, authLoading, registerUser, loginUser, logoutUser, guest, setGuest};
         return(
             <AuthContext.Provider value={value}>
                 {children}

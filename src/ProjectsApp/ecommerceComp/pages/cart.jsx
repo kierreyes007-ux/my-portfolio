@@ -2,19 +2,34 @@ import { useEcommerce } from "../context/ecommerceContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Minus, Plus, Trash2, ChevronUp, ChevronDown } from "lucide-react";
+import {useAuthContext} from "../context/authContext";
 
 function Cart() {
     const { cart, addQty, decQty, removeToCart } = useEcommerce();
     const [isMinimized, setIsMinimized] = useState(true);
+    const [selectedItems, setSelectedItems] = useState([]);
     const navigate = useNavigate();
+    const { user } = useAuthContext();
 
     const total = cart.reduce(
         (sum, prod) => sum + (prod.price * prod.quantity),
         0
     );
-
+    
     const shippingFee = total * 0.04;
     const finalTotal = total + shippingFee;
+
+    function toggleSelectedItem(itemId){
+        setSelectedItems(prev => prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId])
+    };
+
+    const toggleSelectAll = () => {
+    if (selectedItems.length === cart.length) {
+        setSelectedItems([]);
+    } else {
+        setSelectedItems(cart.map((item) => item.id));
+    }
+    };
 
     return (
         <section className="w-full min-h-screen bg-[#f7f7f5] px-4 pb-24 pt-8 text-neutral-950 sm:px-6 lg:px-10">
@@ -54,15 +69,23 @@ function Cart() {
                         </div>
                     </div>
                 )}
-
+                
                 <div className="grid gap-4">
+                    <label className="flex gap-2 items-center">
+                        <input className="ml-5 h-4 w-4"
+                        type="checkbox" checked={cart.length > 0 && selectedItems.length === cart.length}
+                        onChange={toggleSelectAll} />
+                         Select All
+                    </label>
                     {cart?.map((item) => (
                         <div
                             className="relative grid gap-5 rounded-2xl border border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-5 md:grid-cols-[1fr_auto_auto] md:items-center"
-                            key={item.id}
                         >
-
-                            <div className="flex items-center gap-4">
+                            
+                                <input className="absolute top-4 left-4 h-4 w-4 rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950"
+                            type="checkbox"></input>
+                            
+                            <div className="flex items-center gap-4 pl-4">
                                 <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-neutral-50 p-3 sm:h-28 sm:w-28">
                                     <img
                                         className="h-full w-full object-contain"
@@ -125,7 +148,7 @@ function Cart() {
                                     <Trash2 className="h-4 w-4" />
                                 </button>
                             </div>
-
+                           
                         </div>
                     ))}
                 </div>
@@ -195,8 +218,8 @@ function Cart() {
                                     </span>
                                 </div>
 
-                                <button disabled
-                                    onClick={() => navigate("/projects/e-commerce/login")}
+                                <button
+                                    onClick={() => user ? navigate("/projects/e-commerce/checkout") : navigate("/projects/e-commerce/login")}
                                     className="mt-5 w-full rounded-full bg-neutral-950 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg"
                                 >
                                     Checkout

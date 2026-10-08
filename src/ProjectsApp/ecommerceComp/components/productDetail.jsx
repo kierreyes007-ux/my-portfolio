@@ -48,7 +48,8 @@ function ProductDetail() {
             quantity,
             selectedSize,
             selectedColor
-        );
+        );  
+        navigate(-1)
     };
 
     return (

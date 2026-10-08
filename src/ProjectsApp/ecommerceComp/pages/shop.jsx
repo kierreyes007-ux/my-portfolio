@@ -99,9 +99,9 @@ function Shop() {
       </div>
 
       {toast && (
-        <div className="fixed bottom-20 left-4 z-50 flex items-center gap-2 rounded-xl bg-neutral-950 px-5 py-3 text-sm font-medium text-white shadow-xl sm:bottom-5 sm:left-5">
+        <Link to="/projects/e-commerce/cart"><div className="fixed bottom-20 left-4 z-50 flex items-center gap-2 rounded-xl bg-neutral-950 px-5 py-3 text-sm font-medium text-white shadow-xl sm:bottom-5 sm:left-5">
           <span>{toast}</span>
-        </div>
+        </div></Link>
       )}
 
       {showConfirm && (

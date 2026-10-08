@@ -7,8 +7,12 @@
   import Register from "./ecommerceComp/pages/register";
   import ProductDetail from "./ecommerceComp/components/productDetail";
   import Categories from "./ecommerceComp/pages/categories";
+  import Profile from "./ecommerceComp/pages/profile";
+  import Checkout from "./ecommerceComp/pages/checkout";
+  import ProtectedRoute from "./ecommerceComp/components/protectedRoute";
   import { Routes, Route } from "react-router-dom";
   import { AuthProvider } from "./ecommerceComp/context/authContext";
+  import { OrderProvider } from "./ecommerceComp/context/orderContext";
   import { EcommerceProvider } from "./ecommerceComp/context/ecommerceContext";
   function Ecommerce(){
      
@@ -17,6 +21,7 @@
       <div>
         <AuthProvider>
           <EcommerceProvider>
+            <OrderProvider>
           <Navbar />
           
           <Routes>
@@ -29,8 +34,11 @@
               <Route path='shop/:category' element={<Shop />}/>
               <Route path="categories" element={<Categories />} />
               <Route path="product/:id" element={<ProductDetail />} />
+              <Route path='profile' element={<ProtectedRoute><Profile /> </ProtectedRoute>}/>
+              <Route path='checkout' element={<Checkout />}/>
           </Routes>
-          </EcommerceProvider>
+              </OrderProvider>
+            </EcommerceProvider>
           </AuthProvider>
       </div>
     )
