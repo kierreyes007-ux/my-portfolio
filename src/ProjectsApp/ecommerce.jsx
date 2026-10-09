@@ -10,6 +10,7 @@
   import Profile from "./ecommerceComp/pages/profile";
   import Checkout from "./ecommerceComp/pages/checkout";
   import ProtectedRoute from "./ecommerceComp/components/protectedRoute";
+  import Address from "./ecommerceComp/components/profile/address";
   import { Routes, Route } from "react-router-dom";
   import { AuthProvider } from "./ecommerceComp/context/authContext";
   import { OrderProvider } from "./ecommerceComp/context/orderContext";
@@ -36,6 +37,7 @@
               <Route path="product/:id" element={<ProductDetail />} />
               <Route path='profile' element={<ProtectedRoute><Profile /> </ProtectedRoute>}/>
               <Route path='checkout' element={<Checkout />}/>
+              <Route path='address' element={<Address />}/>
           </Routes>
               </OrderProvider>
             </EcommerceProvider>

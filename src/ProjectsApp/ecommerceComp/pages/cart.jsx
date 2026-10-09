@@ -19,17 +19,7 @@ function Cart() {
     const shippingFee = total * 0.04;
     const finalTotal = total + shippingFee;
 
-    function toggleSelectedItem(itemId){
-        setSelectedItems(prev => prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId])
-    };
-
-    const toggleSelectAll = () => {
-    if (selectedItems.length === cart.length) {
-        setSelectedItems([]);
-    } else {
-        setSelectedItems(cart.map((item) => item.id));
-    }
-    };
+    
 
     return (
         <section className="w-full min-h-screen bg-[#f7f7f5] px-4 pb-24 pt-8 text-neutral-950 sm:px-6 lg:px-10">
@@ -73,8 +63,14 @@ function Cart() {
                 <div className="grid gap-4">
                     <label className="flex gap-2 items-center">
                         <input className="ml-5 h-4 w-4"
-                        type="checkbox" checked={cart.length > 0 && selectedItems.length === cart.length}
-                        onChange={toggleSelectAll} />
+                        type="checkbox" checked={selectedItems.length === cart.length}
+                        onChange={(e) => {
+                            if(e.target.checked){
+                                setSelectedItems(cart.map((item) => item.id));
+                            }else{
+                                setSelectedItems([]);
+                            }
+                        }} />
                          Select All
                     </label>
                     {cart?.map((item) => (
@@ -83,7 +79,14 @@ function Cart() {
                         >
                             
                                 <input className="absolute top-4 left-4 h-4 w-4 rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950"
-                            type="checkbox"></input>
+                                type="checkbox" checked={selectedItems.includes(item.id)}
+                                onChange={(e) => {
+                                    if(e.target.checked){
+                                        setSelectedItems(prev => [...prev, item.id]);
+                                    }else{
+                                        setSelectedItems((prev) => prev.filter((id) => id !== item.id))
+                                    }
+                                }}/>
                             
                             <div className="flex items-center gap-4 pl-4">
                                 <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-neutral-50 p-3 sm:h-28 sm:w-28">
